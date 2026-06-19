@@ -45,6 +45,8 @@
         "icon": "bot",
         "expanded": true,
         "pages": [
+          "aloro/dashboard",
+          "aloro/apeluri",
           "aloro/agenti"
         ]
       },
