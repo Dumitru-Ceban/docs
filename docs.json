@@ -41,6 +41,14 @@
     "directory": "card",
     "groups": [
       {
+        "group": "Aloro",
+        "icon": "bot",
+        "expanded": true,
+        "pages": [
+          "aloro/agenti"
+        ]
+      },
+      {
         "group": "Platform",
         "icon": "layers",
         "expanded": true,
