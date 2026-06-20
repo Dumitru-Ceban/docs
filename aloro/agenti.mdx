@@ -111,7 +111,22 @@ Setările sunt **siguranța preventivă** și „mecanica" agentului — cum aud
     **TTS (Text-To-Speech)** transformă răspunsul agentului în voce. Alegi furnizorul din **TTS provider**:
 
     <CardGroup cols={2}>
-         
+      <Card title="ElevenLabs" icon="mic">
+        Voice ID + `language`, `model` (ex: `eleven_flash_v2_5`), normalizare text, sync alignment și
+        voice settings: stability, similarity boost, style, speed, speaker boost.
+      </Card>
+      <Card title="Cartesia" icon="audio-lines">
+        `model`, `voice`, `language`, `speed`, `volume`.
+      </Card>
+      <Card title="Minimax" icon="music">
+        `model`, `voice`, `speed`, `emotion`.
+      </Card>
+      <Card title="Inworld" icon="speaker">
+        `model`, `voice`, `language`, `temperature`, `speaking_rate`, `text_normalization`.
+      </Card>
+      <Card title="Soniox" icon="radio">
+        `voice` (preset), `model` (ex: `tts-rt-v1-preview`), `language`.
+      </Card>
     </CardGroup>
 
     Pentru **ElevenLabs** ai și **preset de voci** (Ana, Andrei, Alex, Mihai, Andreea, Corina, Eva, David) cu sample audio — alegi vocea ascultând direct.
