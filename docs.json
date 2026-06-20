@@ -47,7 +47,10 @@
         "pages": [
           "aloro/dashboard",
           "aloro/apeluri",
-          "aloro/agenti"
+          "aloro/agenti",
+          "aloro/clienti",
+          "aloro/campanii",
+          "aloro/numere-telefon"
         ]
       },
       {

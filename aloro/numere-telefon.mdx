@@ -1,0 +1,91 @@
+---
+title: "Numere Telefon — Ghid complet"
+description: "Gestionezi numerele folosite la apelurile inbound și outbound, le atribui agenți și adaugi numere noi."
+icon: "phone"
+---
+
+<Info>
+  **Numere Telefon** (`/phone-numbers`) este locul unde gestionezi numerele de telefon folosite la
+  apelurile **inbound** și **outbound** și **atribui agentul** care răspunde sau apelează de pe
+  fiecare număr.
+</Info>
+
+## Lista numerelor
+
+Tabelul arată toate numerele configurate, cu agenții asignați pe fiecare direcție.
+
+| Coloană | Ce arată |
+| --- | --- |
+| **ID / Capabilități** | Identificatorul numărului + iconițe inbound/outbound (active/inactive). |
+| **Număr** | Numărul propriu-zis (+ etichetă opțională). Click = editare. |
+| **Agent inbound** | Agentul care **răspunde** la apelurile primite pe acest număr. |
+| **Agent outbound** | Agentul care **apelează** de pe acest număr. |
+| **Livekit trunks / Telnyx SIP** | (doar admin) status conexiuni tehnice. |
+
+<Tip>
+  Poți schimba agentul **direct din tabel** (editare inline pe coloanele Agent inbound / Agent
+  outbound) — selecția se salvează instant, fără să deschizi formularul complet.
+</Tip>
+
+---
+
+## Adaugă un număr nou
+
+Apeși **New number** și completezi formularul:
+
+<AccordionGroup>
+  <Accordion title="Câmpuri de bază" icon="phone-plus">
+    - **Număr** — numărul de telefon (obligatoriu).
+    - **Etichetă** — nume prietenesc, pentru referință internă.
+    - **Provider** — furnizorul (implicit `telnyx`).
+    - **Capabilități** — `inbound,outbound` / `inbound` / `outbound`.
+  </Accordion>
+  <Accordion title="Agenți" icon="bot">
+    - **Agent inbound** — cine răspunde apelurilor primite.
+    - **Agent outbound** — cine apelează de pe acest număr.
+
+    Listele de agenți sunt filtrate pe direcție (un agent doar-outbound nu apare la inbound și invers).
+  </Accordion>
+  <Accordion title="Telnyx & rutare (avansat)" icon="key">
+    - **Telnyx API key** — cheia contului Telnyx pentru acest număr (criptată; la editare apare
+      mascată, lași gol ca să o păstrezi).
+    - **Telnyx API URL** — endpoint opțional (implicit `https://api.telnyx.com/v2`).
+    - **Tech prefix** — prefix de gateway pentru rutare specială.
+    - **Carrier pool** — limitează numărul de apeluri concurente de pe acest număr.
+    - **Status** — `available` / `reserved` / `disabled`.
+    - **Py Agent** — serverul LiveKit asociat (doar admin/dev).
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  La **editarea** unui număr existent, formularul e precompletat, apar agenții asignați și devine
+  vizibil butonul de **ștergere**. Cheia Telnyx apare mascată — o înlocuiești doar dacă lipești una nouă.
+</Note>
+
+---
+
+## Opțiuni suplimentare
+
+Pe lângă listă și adăugare, pagina mai are câteva funcții utile (unele doar pentru admin):
+
+<CardGroup cols={2}>
+  <Card title="Mută apeluri între numere" icon="arrow-right-left">
+    Alegi un **număr sursă** și un **număr destinație** și muți toate apelurile **în coadă / pauzate**
+    de pe unul pe altul — util dacă un număr cade și vrei să redirecționezi traficul fără să pierzi apelurile.
+  </Card>
+  <Card title="Import din Telnyx" icon="download">
+    (admin/dev) Aduci automat numerele din contul Telnyx: alegi cheia API, încarci lista, vezi
+    statusul fiecărui număr (deja există sau nu) și imporți cele selectate.
+  </Card>
+  <Card title="LiveKit trunks" icon="server">
+    (admin) Vezi și gestionezi ce trunk-uri LiveKit (server) primesc/plasează apeluri pentru fiecare număr.
+  </Card>
+  <Card title="Status Telnyx SIP" icon="plug">
+    (admin) Verifici dacă numărul e **conectat** sau **neasociat** la o conexiune SIP Telnyx și o poți schimba.
+  </Card>
+</CardGroup>
+
+<Info>
+  Coloanele **Telnyx SIP** și **Livekit trunks** sunt și locul de unde **afli starea tehnică** a unui
+  număr (conectat / neasociat / erori) — utile când vrei să verifici de ce un număr nu funcționează.
+</Info>

@@ -1,0 +1,122 @@
+---
+title: "Clienți (CRM) — Ghid complet"
+description: "Gestionezi baza de clienți: profil, informații, istoric apeluri, programarea unui apel nou și apeluri în masă."
+icon: "address-book"
+---
+
+<Info>
+  **Clienți** (`/ops-hub`) este modulul CRM. Aici vezi toți clienții, le deschizi profilul,
+  le adaugi informații și **lansezi sau programezi apeluri** către ei. Pagina are două taburi:
+  **Clienți** (lista) și **Note clienți**.
+</Info>
+
+## Lista de clienți
+
+În tabul **Clienți** vezi toți clienții, cu **nume**, **telefon** și **info**. Poți:
+
+<CardGroup cols={3}>
+  <Card title="Caută" icon="search">
+    După nume sau număr de telefon (câmpul „Caută nume sau telefon").
+  </Card>
+  <Card title="Adaugă client nou" icon="user-plus">
+    Completezi nume, telefon și info, apoi salvezi.
+  </Card>
+  <Card title="Apeluri Bulk" icon="users">
+    Scurtătură către apelurile în masă (vezi și secțiunea Campanii).
+  </Card>
+</CardGroup>
+
+Apeși pe un client ca să-i deschizi **profilul**.
+
+---
+
+## Profilul clientului
+
+În profil vezi și editezi tot ce ține de client.
+
+<AccordionGroup>
+  <Accordion title="Informații despre client" icon="user-pen">
+    Editezi **numele** și câmpul **info** — aici poți nota detalii precum **suma datorată** sau
+    orice context relevant despre client. Salvezi cu **Salvează**.
+  </Accordion>
+  <Accordion title="Telefoane" icon="phone">
+    Un client poate avea mai multe numere. Adaugi/editezi/ștergi telefoane și marchezi unul ca
+    **principal**.
+  </Accordion>
+  <Accordion title="Apeluri recente" icon="clock">
+    Ultimele apeluri ale clientului: status, durată, agent, plus **transcript** și **înregistrare**
+    (redare sau descărcare).
+  </Accordion>
+  <Accordion title="Coadă pentru acest client" icon="list">
+    Apelurile puse în coadă pentru clientul curent, cu status, prioritate și agentul asignat.
+  </Accordion>
+  <Accordion title="Note" icon="notebook-pen">
+    Notele generate de agent în urma apelurilor, editabile.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Apel nou — programarea unui apel
+
+Din profil apeși **Apel nou** ca să pui în coadă un apel outbound către client. Aici se află
+reglajele cheie:
+
+<Steps>
+  <Step title="Telefon">
+    Alegi numărul clientului care va fi sunat (implicit cel principal).
+  </Step>
+  <Step title="Agent">
+    Selectezi **agentul** cu care vrei să apelezi. După alegere se încarcă automat numerele sursă
+    permise (allowlist-ul outbound al agentului).
+  </Step>
+  <Step title="Număr sursă">
+    Numărul de pe care pleacă apelul — limitat la cele permise agentului. Există și **auto-select**.
+  </Step>
+  <Step title="Prioritate (1 = urgent)">
+    Valoare **1–9**, unde **1 = cea mai mare prioritate** (urgent), 9 = cea mai mică. Implicit 5.
+  </Step>
+  <Step title="Programează la">
+    Opțional, alegi **ziua și ora** la care să plece apelul. Dacă lași gol, apelul intră imediat în coadă.
+  </Step>
+  <Step title="Reîncercări (retry)">
+    **Max retries** (0–3) — de câte ori să reîncerce dacă nu răspunde — și **Retry delay** (1 min,
+    5 min, 30 min, 1 oră, 2/3/6 ore) — cât de des reîncearcă.
+  </Step>
+</Steps>
+
+<Tip>
+  Mai ai două câmpuri opționale: **Date context** (text/JSON, max 300 caractere) și **suprascriere
+  intro outbound** (pentru teste, max 150 caractere). La final apeși **Pune în coadă apelul** și
+  primești ID-ul apelului.
+</Tip>
+
+<Note>
+  După punerea în coadă, apelul apare în secțiunea **„Coadă pentru acest client"** din profil și în
+  tabul **Coadă** din secțiunea Apeluri.
+</Note>
+
+---
+
+## Apeluri în masă (Bulk)
+
+Pentru a apela mulți clienți deodată ai **două căi**, dar interfața de încărcare a fișierului CSV
+este, practic, aceeași:
+
+<CardGroup cols={2}>
+  <Card title="Din secțiunea Agenți" icon="bot">
+    Lansezi un bulk direct din contextul unui agent.
+  </Card>
+  <Card title="Din secțiunea Campanii" icon="layer-group">
+    Secțiunea dedicată campaniilor. La încărcarea documentului CSV alegi și **data de început** a
+    bulk-ului. Vezi ghidul **Campanii** pentru detalii.
+  </Card>
+</CardGroup>
+
+---
+
+## Note clienți
+
+Al doilea tab, **Note clienți**, e o listă a tuturor notelor din toate apelurile, cu filtre (client,
+agent, telefon) și un panou de detalii pentru fiecare notă (text, info extras de tool, linkuri către
+client / apel / transcript).

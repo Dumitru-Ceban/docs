@@ -1,0 +1,113 @@
+---
+title: "Campanii — Ghid complet"
+description: "Apeluri în masă: încarci un fișier CSV, alegi data de început și urmărești progresul fiecărei rulări bulk."
+icon: "layer-group"
+---
+
+<Info>
+  **Campanii** (`/campaigns`) este secțiunea dedicată **apelurilor în masă (bulk)**. Încarci un
+  fișier CSV cu clienții de apelat, alegi când să pornească și urmărești progresul. Același bulk
+  poate fi lansat și din secțiunea Agenți, dar interfața de încărcare CSV este aceeași.
+</Info>
+
+## Cum funcționează
+
+<Steps>
+  <Step title="Încarci fișierul CSV">
+    Apeși **Încarcă fișier** și tragi un `.csv` în zona de upload (max 2000 rânduri).
+  </Step>
+  <Step title="Verifici fișierul">
+    Apeși **Verifică fișier** — sistemul validează rândurile **fără a modifica baza de date** și
+    îți arată: Total / OK / Avertismente / Erori.
+  </Step>
+  <Step title="Configurezi rularea">
+    Alegi prioritate, reîncercări și **data de început** a bulk-ului.
+  </Step>
+  <Step title="Inițiezi apelurile">
+    Apeși **Inițiază apeluri** — fiecare rând devine un apel în coadă.
+  </Step>
+</Steps>
+
+---
+
+## Structura fișierului CSV
+
+Prima linie trebuie să conțină **antetele coloanelor**. Coloanele obligatorii și opționale:
+
+| Coloană | Obligatoriu | Ce conține |
+| --- | --- | --- |
+| `telefon_client` | **Da** | Numărul clientului (format `+407…`). |
+| `agent_id` | **Da** | ID-ul agentului care va efectua apelul. |
+| `nume_client` | **Da** | Numele clientului. |
+| `numar_apelant` | Nu | Numărul sursă (din allowlist-ul agentului). `0` = auto-select. |
+| `context_suplimentar` | Nu | Context extra pentru agent (max 300 caractere). |
+| `datetime_apel` | Nu | Programare per rând (`DD.MM.YYYY HH:MM`), trebuie să fie în viitor. |
+| `tpldata-*` | Nu | Variabile de șablon (ex: `tpldata-suma`, `tpldata-scadenta`), transformate automat pentru voce. |
+
+<Note>
+  Coloana **`numar_apelant` nu mai este obligatorie** — dacă lipsește, se folosește auto-select din
+  numerele permise agentului.
+</Note>
+
+```csv Exemplu CSV
+telefon_client,agent_id,nume_client,context_suplimentar,datetime_apel
+"+40745123456",1,Popescu Ion,"In restanta cu factura din decembrie.",15.01.2026 14:30
+```
+
+### Validarea
+
+<AccordionGroup>
+  <Accordion title="Rânduri cu eroare (nu se trimit)" icon="circle-x">
+    Câmpuri obligatorii lipsă, telefon de lungime greșită, agent inexistent, dată în trecut sau
+    format greșit, context peste 300 caractere, coloane `tpldata-` cu nume invalid.
+  </Accordion>
+  <Accordion title="Avertismente (se pot trimite)" icon="triangle-alert">
+    Ex: prefix non-românesc al numărului. Sunt semnalate, dar nu blochează trimiterea.
+  </Accordion>
+</AccordionGroup>
+
+Doar când fișierul e **Verificat** (badge verde), butonul de inițiere se activează.
+
+---
+
+## Configurarea rulării
+
+<CardGroup cols={2}>
+  <Card title="Prioritate" icon="flag">
+    1–9, unde **1 = cea mai mare** prioritate. Implicit 5.
+  </Card>
+  <Card title="Max reîncercări" icon="rotate-cw">
+    0–3 (implicit 3). De câte ori se reîncearcă un apel eșuat.
+  </Card>
+  <Card title="Interval retry" icon="timer">
+    1 min, 5 min, 30 min, 1 oră, 2/3/6 ore (implicit 1 oră).
+  </Card>
+  <Card title="Programare apeluri" icon="calendar-clock">
+    **Data de început** a bulk-ului. Se aplică rândurilor **fără** `datetime_apel` în CSV. Gol = imediat.
+  </Card>
+</CardGroup>
+
+---
+
+## Istoricul rulărilor (Bulk Runs)
+
+Pagina Campanii listează rulările anterioare (paginat). Fiecare rulare e un card extensibil cu:
+
+- **Antet**: numele fișierului (click = descărcare), cine a încărcat, ID-ul rulării, data.
+- **Bară de progres**: `finalizate / total · %` (inclusiv reîncercări în așteptare).
+- **Extragere date**: progresul extragerii notelor post-apel.
+- **Rezultate**: defalcare pe motive (reușite, respinse, întrerupte, număr greșit, fără răspuns, timeout, închise de agent).
+- **Agenți implicați** și **șablonul** folosit.
+- **Detalii**: durată totală, apeluri active, apeluri în coadă, programat la, mesaje transcript, note pe tool și „Vezi discuții".
+
+---
+
+## Legătura cu coada de apeluri
+
+Fiecare rând din CSV creează un apel în **coada de apeluri**, cu `bulk_run_id`, telefon, agent,
+status, prioritate și data programată.
+
+<Tip>
+  Poți controla o campanie întreagă din tabul **Coadă** al secțiunii Apeluri: **Pauzează**, **Reia**
+  sau **Anulează** doar apelurile dintr-un anumit bulk (controlul „bulk selectat").
+</Tip>
