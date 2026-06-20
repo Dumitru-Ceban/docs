@@ -1,13 +1,11 @@
 ---
-title: "Apeluri — Ghid complet"
+title: "Apeluri"
 description: "Centrul de apeluri: istoricul apelurilor finalizate, sesiunile active și coada de outbound — cum filtrezi, inspectezi și controlezi apelurile."
 icon: "phone"
 ---
 
 <Info>
-  **Apeluri** (`/calls-hub`) este centrul de apeluri al platformei. De aici urmărești tot ciclul de
-  viață al unui apel: din **coadă** → **activ** → **finalizat**. Pagina are trei taburi, comutabile
-  din partea de sus.
+  **Apeluri** (`/calls-hub`) este centrul de apeluri al platformei. De aici urmărești tot ciclul de viață al unui apel: din **coadă** → **activ** → **finalizat**. Pagina are trei taburi, comutabile din partea de sus.
 </Info>
 
 ## Cele 3 taburi
@@ -16,25 +14,25 @@ icon: "phone"
   <Card title="Finalizate" icon="list">
     Istoricul apelurilor încheiate: filtre, transcript, înregistrare, note și pin-uri.
   </Card>
+
   <Card title="Active" icon="phone-call">
     Apelurile live în desfășurare chiar acum, cu posibilitatea de a le opri.
   </Card>
+
   <Card title="Coadă" icon="clock">
     Apelurile outbound care așteaptă să fie inițiate, cu controale de pauză/reluare/anulare.
   </Card>
 </CardGroup>
 
 <Note>
-  Comutarea între taburi se face prin parametrul `?tab=finished|active|queue`. Tabul implicit la
-  intrare este **Finalizate**.
+  Comutarea între taburi se face prin parametrul `?tab=finished|active|queue`. Tabul implicit la intrare este **Finalizate**.
 </Note>
 
 ---
 
 ## Tab Finalizate
 
-Locul unde cauți și analizezi apelurile încheiate. Sus ai un panou de **filtre** (pliabil), apoi un
-**tabel paginat** (50 pe pagină), iar la selectarea unui apel se deschide un **panou lateral** cu detalii.
+Locul unde cauți și analizezi apelurile încheiate. Sus ai un panou de **filtre** (pliabil), apoi un **tabel paginat** (50 pe pagină), iar la selectarea unui apel se deschide un **panou lateral** cu detalii.
 
 ### Filtre
 
@@ -42,14 +40,14 @@ Locul unde cauți și analizezi apelurile încheiate. Sus ai un panou de **filtr
   <Accordion title="Filtre de bază" icon="filter">
     - **Client sau telefon** — caută după nume client sau număr.
     - **Agent** — toți agenții sau unul anume.
-    - **Direcție** — Inbound + Outbound, doar Inbound sau doar Outbound.
-    - **Motiv finalizare** — `ended_reason` (apel închis normal, ocupat, fără răspuns, deconectat,
-      închis de agent, tăcere, oprit de admin etc.).
+    - **Direcție** — Inbound \+ Outbound, doar Inbound sau doar Outbound.
+    - **Motiv finalizare** — `ended_reason` (apel închis normal, ocupat, fără răspuns, deconectat, închis de agent, tăcere, oprit de admin etc.).
   </Accordion>
+
   <Accordion title="Interval de timp" icon="calendar">
-    Dată + oră de început și de sfârșit, plus butoane rapide: **Azi**, **24h**, **3 zile**,
-    **Săpt.**, **Luna**.
+    Dată \+ oră de început și de sfârșit, plus butoane rapide: **Azi**, **24h**, **3 zile**, **Săpt.**, **Luna**.
   </Accordion>
+
   <Accordion title="Filtre avansate" icon="sliders-horizontal">
     - **Tipuri de note** — arată doar apelurile cu note de un anumit tip/tool.
     - **Categorii pin** — filtrează după grupurile de pin (dacă există).
@@ -61,9 +59,7 @@ Aplici cu **Aplică filtre**, iar **Resetează** șterge totul. Filtrele active 
 
 ### Tabelul
 
-Coloane principale: **Call ID**, **Direcție**, **Telefon**, **Client**, **Rezultat** (motivul
-finalizării), **Durată**, **Agent**, **Status**, **istoric contact** (de câte ori a fost sunat /
-ultimul contact), **Note** și **Pin**.
+Coloane principale: **Call ID**, **Direcție**, **Telefon**, **Client**, **Rezultat** (motivul finalizării), **Durată**, **Agent**, **Status**, **istoric contact** (de câte ori a fost sunat / ultimul contact), **Note** și **Pin**.
 
 ### Acțiuni per apel
 
@@ -71,18 +67,23 @@ ultimul contact), **Note** și **Pin**.
   <Card title="Inspect" icon="search">
     Deschide panoul cu toate detaliile apelului (metadate, status tehnic, motiv finalizare).
   </Card>
+
   <Card title="Transcriere" icon="file-text">
     Vezi transcriptul conversației (dacă există). Altfel apare „Fără transcriere".
   </Card>
+
   <Card title="Redă" icon="play">
     Ascultă înregistrarea direct în pagină (dacă există).
   </Card>
+
   <Card title="Descarcă" icon="download">
     Descarcă fișierul audio al apelului.
   </Card>
+
   <Card title="Pin" icon="pin">
     Marchează apelul într-un grup de pin, cu un comentariu opțional.
   </Card>
+
   <Card title="Note" icon="notebook-pen">
     Vezi notele generate de agent, grupate pe tool/tip.
   </Card>
@@ -95,18 +96,15 @@ ultimul contact), **Note** și **Pin**.
 Monitorizezi apelurile **live** chiar acum.
 
 - Antet cu numărul total de apeluri active.
-- Tabel cu: **Telefon (către)**, **De la**, **Status** (`initiated`, `ringing`, `answered`,
-  `in_progress`), **LiveKit room**, **Telefonie**, **Început la**.
+- Tabel cu: **Telefon (către)**, **De la**, **Status** (`initiated`, `ringing`, `answered`, `in_progress`), **LiveKit room**, **Telefonie**, **Început la**.
 - Acțiune: butonul **Oprește** întrerupe un apel activ (cu confirmare).
 
 <Warning>
-  Oprirea unui apel activ este o acțiune imediată și ireversibilă — apelul este întrerupt instant.
-  Folosește-o doar când e necesar.
+  Oprirea unui apel activ este o acțiune imediată și ireversibilă — apelul este întrerupt instant. Folosește-o doar când e necesar.
 </Warning>
 
 <Note>
-  Utilizatorii cu rol tehnic (`dev`) văd în plus un panou **LiveKit ground truth** cu apelurile SIP
-  active per server și utilizarea per carrier-pool (verde/galben/roșu în funcție de capacitate).
+  Utilizatorii cu rol tehnic (`dev`) văd în plus un panou **LiveKit ground truth** cu apelurile SIP active per server și utilizarea per carrier-pool (verde/galben/roșu în funcție de capacitate).
 </Note>
 
 ---
@@ -118,23 +116,30 @@ Gestionezi apelurile **outbound** care așteaptă să fie inițiate.
 ### Indicatori
 
 <CardGroup cols={4}>
-  <Card title="Total" icon="layers" />
-  <Card title="În așteptare" icon="clock" />
-  <Card title="Pauzate" icon="pause" />
-  <Card title="În curs" icon="phone-outgoing" />
+  <Card title="Total" icon="layers">
+  </Card>
+
+  <Card title="În așteptare" icon="clock">
+  </Card>
+
+  <Card title="Pauzate" icon="pause">
+  </Card>
+
+  <Card title="În curs" icon="phone-outgoing">
+  </Card>
 </CardGroup>
 
 ### Controale
 
 <AccordionGroup>
   <Accordion title="Control bulk selectat" icon="package">
-    Alegi un **bulk run** dintr-un dropdown și poți: **Pauzează**, **Reia** sau **Anulează** doar
-    apelurile din acel bulk. Vezi câte sunt pauzabile / pauzate / anulabile.
+    Alegi un **bulk run** dintr-un dropdown și poți: **Pauzează**, **Reia** sau **Anulează** doar apelurile din acel bulk. Vezi câte sunt pauzabile / pauzate / anulabile.
   </Accordion>
+
   <Accordion title="Control general coadă" icon="list-checks">
-    Afectează **toate** apelurile din coada proiectului: **Pauzează toate în coadă**, **Reia toate
-    pauzate**, **Anulează toate în coadă** (fiecare cu confirmare).
+    Afectează **toate** apelurile din coada proiectului: **Pauzează toate în coadă**, **Reia toate pauzate**, **Anulează toate în coadă** (fiecare cu confirmare).
   </Accordion>
+
   <Accordion title="Acțiuni per rând" icon="square-pen">
     - **Anulează** — scoate apelul din coadă.
     - **Reia** — repornește un apel pauzat manual.
@@ -142,13 +147,10 @@ Gestionezi apelurile **outbound** care așteaptă să fie inițiate.
   </Accordion>
 </AccordionGroup>
 
-Tabelul arată: telefon, bulk, agent, **status**, **încercări** (X/max, roșu la limită), prioritate,
-**programat** (când se va iniția) și o coloană de **notă** (ex: „Pauzat manual", „Programat în afara orelor").
+Tabelul arată: telefon, bulk, agent, **status**, **încercări** (X/max, roșu la limită), prioritate, **programat** (când se va iniția) și o coloană de **notă** (ex: „Pauzat manual", „Programat în afara orelor").
 
 <Tip>
-  Coada se **reîmprospătează automat la fiecare 10 secunde**, deci vezi mereu starea actuală fără
-  să reîncarci pagina. Dacă dispecerizarea e oprită global, apare un banner de avertizare cu motivul,
-  cine a oprit-o și când.
+  Coada se **reîmprospătează automat la fiecare 10 secunde**, deci vezi mereu starea actuală fără să reîncarci pagina. Dacă dispecerizarea e oprită global, apare un banner de avertizare cu motivul, cine a oprit-o și când.
 </Tip>
 
 ---
@@ -169,8 +171,7 @@ Tabelul arată: telefon, bulk, agent, **status**, **încercări** (X/max, roșu 
     Conversație activă, audio în streaming.
   </Step>
   <Step title="Finalizat">
-    Statusul devine `completed` / `failed` / `canceled` / `aborted_by_admin`, cu un `ended_reason`.
-    Apelul apare în tabul **Finalizate**.
+    Statusul devine `completed` / `failed` / `canceled` / `aborted_by_admin`, cu un `ended_reason`. Apelul apare în tabul **Finalizate**.
   </Step>
 </Steps>
 
@@ -192,20 +193,18 @@ Tabelul arată: telefon, bulk, agent, **status**, **încercări** (X/max, roșu 
 
 ## Call Inspector
 
-Pe lângă hub există și **Call Inspector** (`/calls-inspector`), o pagină separată pentru analiza
-unui apel individual:
+Pe lângă hub există și **Call Inspector** (`/calls-inspector`), o pagină separată pentru analiza unui apel individual:
 
 <CardGroup cols={2}>
   <Card title="Căutare" icon="search">
     După **telefon**, **nume client** sau **Call ID**.
   </Card>
+
   <Card title="Raport AI" icon="sparkles">
-    Generează un rezumat în română al apelului (2 paragrafe + puncte cheie), pe baza transcriptului.
-    Poți copia raportul sau re-analiza.
+    Generează un rezumat în română al apelului (2 paragrafe \+ puncte cheie), pe baza transcriptului. Poți copia raportul sau re-analiza.
   </Card>
 </CardGroup>
 
 <Info>
-  Inspector-ul îți dă transcriptul complet și înregistrarea pentru un apel, plus un rezumat AI — util
-  pentru verificarea rapidă a calității conversației.
+  Inspector-ul îți dă transcriptul complet și înregistrarea pentru un apel, plus un rezumat AI — util pentru verificarea rapidă a calității conversației.
 </Info>

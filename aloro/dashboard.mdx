@@ -1,58 +1,49 @@
 ---
-title: "Dashboard — Ghid complet"
+title: "Dashboard"
 description: "Panoul principal: ce înseamnă fiecare card și grafic, cum citești metricile și cum îți personalizezi panourile."
 icon: "gauge"
 ---
 
 <Info>
-  **Dashboard** (`/home`) este pagina principală — o privire de ansamblu, în timp aproape real,
-  asupra sănătății sistemului: câte apeluri rulează, cât de bine performează agenții și cum arată
-  telemetria AI. Tot ce vezi se calculează automat din baza de date a apelurilor.
+  **Dashboard** (`/home`) este pagina principală — o privire de ansamblu, în timp aproape real, asupra sănătății sistemului: câte apeluri rulează, cât de bine performează agenții și cum arată telemetria AI. Tot ce vezi se calculează automat din baza de date a apelurilor.
 </Info>
 
 ## Cum funcționează Dashboard-ul
 
-Dashboard-ul este **modular**: e compus din „panouri" (carduri și grafice) aranjate în sloturi.
-Fiecare panou afișează o metrică sau un grafic și își trage singur datele.
+Dashboard-ul este **modular**: e compus din „panouri" (carduri și grafice) aranjate în sloturi. Fiecare panou afișează o metrică sau un grafic și își trage singur datele.
 
 <Note>
-  Layout-ul este **configurabil per utilizator**. Îți alegi ce panouri apar și în ce poziție din
-  pagina de **Setări utilizator** — vezi secțiunea [Personalizare](#personalizare) de mai jos.
+  Layout-ul este **configurabil per utilizator**. Îți alegi ce panouri apar și în ce poziție din pagina de **Setări utilizator** — vezi secțiunea [Personalizare](#personalizare) de mai jos.
 </Note>
 
-Ferestrele de timp sunt fixe, în funcție de panou: **azi**, **ultimele 7 zile** sau **cumulativ
-până ieri**. Datele istorice sunt salvate în cache pentru viteză; ziua de azi se recalculează la
-fiecare încărcare a paginii.
+Ferestrele de timp sunt fixe, în funcție de panou: **azi**, **ultimele 7 zile** sau **cumulativ până ieri**. Datele istorice sunt salvate în cache pentru viteză; ziua de azi se recalculează la fiecare încărcare a paginii.
 
 ---
 
 ## Cardurile de sus (stat)
 
-Cardurile mici din partea de sus arată indicatorii cheie. Fiecare afișează o valoare și un
-**procent de variație** (verde = în creștere, roșu = în scădere).
+Cardurile mici din partea de sus arată indicatorii cheie. Fiecare afișează o valoare și un **procent de variație** (verde = în creștere, roșu = în scădere).
 
 <CardGroup cols={2}>
   <Card title="Total apeluri azi" icon="phone">
     Numărul de apeluri create de la miezul nopții. Comparat cu **ziua de ieri**.
   </Card>
+
   <Card title="Apeluri în coadă" icon="clock">
-    Câte apeluri așteaptă să fie procesate, plus câte sunt **în desfășurare** chiar acum (live).
-    Indicator în timp real al încărcării sistemului.
+    Câte apeluri așteaptă să fie procesate, plus câte sunt **în desfășurare** chiar acum (live). Indicator în timp real al încărcării sistemului.
   </Card>
+
   <Card title="Rata de succes" icon="circle-check">
-    Procentul apelurilor încheiate normal (ambele părți au închis corect = `normal_clearing`).
-    Exclude apelurile ocupate, abandonate sau fără conversație reală. Pe **ultimele 7 zile** vs
-    săptămâna precedentă.
+    Procentul apelurilor încheiate normal (ambele părți au închis corect = `normal_clearing`). Exclude apelurile ocupate, abandonate sau fără conversație reală. Pe **ultimele 7 zile** vs săptămâna precedentă.
   </Card>
+
   <Card title="Durata medie apel" icon="timer">
-    Durata medie a apelurilor reușite (în minute). Doar apeluri cu final normal. Pe **ultimele 7
-    zile** vs săptămâna precedentă.
+    Durata medie a apelurilor reușite (în minute). Doar apeluri cu final normal. Pe **ultimele 7 zile** vs săptămâna precedentă.
   </Card>
 </CardGroup>
 
 <Tip>
-  Pe lângă acestea, în sloturile de sus pot fi adăugate și carduri tehnice (ex: **DB Errors 24h**,
-  **PHP Errors 24h**) pentru monitorizarea sănătății sistemului — utile pentru rolurile tehnice.
+  Pe lângă acestea, în sloturile de sus pot fi adăugate și carduri tehnice (ex: **DB Errors 24h**, **PHP Errors 24h**) pentru monitorizarea sănătății sistemului — utile pentru rolurile tehnice.
 </Tip>
 
 ---
@@ -68,8 +59,7 @@ Sub carduri se află panourile detaliate. Cele mai importante:
     - **Total apeluri** facturabile și **din care primite** (inbound).
     - **Note stocate** — câte note au generat agenții.
     - **Timp efectiv** — durata totală facturabilă (format ore:min).
-    - **Echivalent uman** — câți agenți umani ar fi necesari pe zi pentru același volum,
-      ținând cont de timp de pregătire, wrap-up, viteza AI vs om și un program de lucru standard.
+    - **Echivalent uman** — câți agenți umani ar fi necesari pe zi pentru același volum, ținând cont de timp de pregătire, wrap-up, viteza AI vs om și un program de lucru standard.
 
     Are și o secțiune pliabilă **„detalii timp"** care arată cum se trece de la „raw" la „efectiv".
   </Accordion>
@@ -85,26 +75,20 @@ Sub carduri se află panourile detaliate. Cele mai importante:
   </Accordion>
 
   <Accordion title="Note agent — Progres note pe tipuri" icon="notebook-pen">
-    Grafic pe **ultimele 7 zile** cu numărul de note generate, defalcat pe tip (intervenție umană,
-    promisiune de plată, rating satisfacție, notă generală, rating interes etc.). Fiecare tip are
-    culoare și iconiță proprie.
+    Grafic pe **ultimele 7 zile** cu numărul de note generate, defalcat pe tip (intervenție umană, promisiune de plată, rating satisfacție, notă generală, rating interes etc.). Fiecare tip are culoare și iconiță proprie.
   </Accordion>
 
   <Accordion title="Evoluție telemetrie AI" icon="activity">
-    Grafic pe **ultimele 7 zile** cu performanța AI: latență E2E, LLM TTFT (timpul până la primul
-    token), TTS TTFB (timpul până la primul sunet), total tokeni. Util pentru a urmări calitatea
-    și costul în timp.
+    Grafic pe **ultimele 7 zile** cu performanța AI: latență E2E, LLM TTFT (timpul până la primul token), TTS TTFB (timpul până la primul sunet), total tokeni. Util pentru a urmări calitatea și costul în timp.
   </Accordion>
 
   <Accordion title="Agenți folosiți + note pe tool" icon="bot">
-    Per agent: numărul total de apeluri și defalcarea pe tool-uri (tipuri de note) din regulile de
-    extragere active. Agenții sunt sortați după volum.
+    Per agent: numărul total de apeluri și defalcarea pe tool-uri (tipuri de note) din regulile de extragere active. Agenții sunt sortați după volum.
   </Accordion>
 </AccordionGroup>
 
 <Note>
-  Mai există panouri de **monitorizare tehnică** (evoluție erori sistem, liste de erori SQL/PHP,
-  integritate `project_id`, comparație telemetrie Py Agents) — utile echipei tehnice, opționale în layout.
+  Mai există panouri de **monitorizare tehnică** (evoluție erori sistem, liste de erori SQL/PHP, integritate `project_id`, comparație telemetrie Py Agents) — utile echipei tehnice, opționale în layout.
 </Note>
 
 ---
@@ -115,14 +99,17 @@ Sub carduri se află panourile detaliate. Cele mai importante:
   <Card title="E2E Latency" icon="gauge">
     Milisecunde de la momentul în care utilizatorul termină de vorbit până când AI începe răspunsul.
   </Card>
+
   <Card title="LLM TTFT" icon="brain">
     Time To First Token — cât „gândește" modelul până la primul cuvânt.
   </Card>
+
   <Card title="TTS TTFB" icon="audio-waveform">
     Time To First Byte — cât durează generarea vocii până la primul sunet.
   </Card>
+
   <Card title="Tokeni" icon="coins">
-    Consumul LLM (prompt + completion + cached). Indicator direct de cost.
+    Consumul LLM (prompt \+ completion \+ cached). Indicator direct de cost.
   </Card>
 </CardGroup>
 
@@ -135,18 +122,15 @@ Sub carduri se află panourile detaliate. Cele mai importante:
     Mergi la pagina de **Setări utilizator** (`/user-settings`), secțiunea pentru module Dashboard.
   </Step>
   <Step title="Alege panourile pe sloturi">
-    Fiecare slot are un dropdown care arată doar panourile **compatibile** cu acel tip de slot.
-    Sub fiecare dropdown apare o descriere a panoului.
+    Fiecare slot are un dropdown care arată doar panourile **compatibile** cu acel tip de slot. Sub fiecare dropdown apare o descriere a panoului.
   </Step>
   <Step title="Salvează">
-    Apasă **Salvează**. Configurația se păstrează (setarea `dashboard_panels`) și se aplică imediat
-    la următoarea încărcare a Dashboard-ului.
+    Apasă **Salvează**. Configurația se păstrează (setarea `dashboard_panels`) și se aplică imediat la următoarea încărcare a Dashboard-ului.
   </Step>
 </Steps>
 
 <Tip>
-  Rolurile cu drepturi de administrare au în plus o iconiță de **setări per panou** și un buton de
-  **recalculare** care golește cache-ul acelui panou și forțează recalcularea datelor.
+  Rolurile cu drepturi de administrare au în plus o iconiță de **setări per panou** și un buton de **recalculare** care golește cache-ul acelui panou și forțează recalcularea datelor.
 </Tip>
 
 ---
@@ -154,6 +138,5 @@ Sub carduri se află panourile detaliate. Cele mai importante:
 ## De reținut
 
 - Dashboard-ul **nu are date picker** — ferestrele de timp sunt fixe per panou.
-- Reîmprospătarea se face prin **reîncărcarea paginii** (nu există polling live, cu excepția
-  indicatorilor de coadă/activ care reflectă starea în timp real la încărcare).
+- Reîmprospătarea se face prin **reîncărcarea paginii** (nu există polling live, cu excepția indicatorilor de coadă/activ care reflectă starea în timp real la încărcare).
 - Codurile de culoare sunt consecvente: **verde = bine**, **roșu = alertă/scădere**, **cyan = informativ**.

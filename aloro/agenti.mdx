@@ -1,13 +1,11 @@
 ---
-title: "Agenți — Ghid complet"
+title: "Agenți"
 description: "Cum creezi, configurezi și pui în producție un agent vocal AI: Profil, Setări, Prompturi, Snippets, Tools și Extragere date."
 icon: "bot"
 ---
 
 <Info>
-  Secțiunea **Agenți** (`/agent-hub`) este inima platformei. Aici construiești creierul fiecărui
-  apel: ce model gândește, ce voce vorbește, ce reguli urmează și ce date scoate la final.
-  Acest ghid te duce de la **zero la un agent funcțional**, apoi explică fiecare tab în detaliu.
+  Secțiunea **Agenți** (`/agent-hub`) este inima platformei. Aici construiești creierul fiecărui apel: ce model gândește, ce voce vorbește, ce reguli urmează și ce date scoate la final. Acest ghid te duce de la **zero la un agent funcțional**, apoi explică fiecare tab în detaliu.
 </Info>
 
 ## Cele 6 taburi ale unui agent
@@ -18,18 +16,23 @@ Fiecare agent este configurat prin 6 taburi. Le parcurgi, în mare, în ordinea 
   <Card title="Profil" icon="id-card">
     Identitatea agentului: nume, direcție (inbound/outbound) și promptul activ.
   </Card>
+
   <Card title="Setări" icon="sliders-horizontal">
     „Mecanica" vocii: model LLM, furnizor TTS, STT, tăceri, fraze de intro/închidere.
   </Card>
+
   <Card title="Prompturi" icon="wand-sparkles">
     Aici se întâmplă magia — comportamentul și acțiunile agentului.
   </Card>
+
   <Card title="Snippets" icon="puzzle">
     Module de prompt reutilizabile, inserate cu `{{slug}}`.
   </Card>
+
   <Card title="Tools" icon="wrench">
     Acțiuni pe care agentul le poate declanșa (ex: transfer la operator uman).
   </Card>
+
   <Card title="Extragere date" icon="filter">
     Reguli aplicate **post-apel** pe transcript pentru a scoate informații structurate.
   </Card>
@@ -40,30 +43,24 @@ Fiecare agent este configurat prin 6 taburi. Le parcurgi, în mare, în ordinea 
 ## Fast setup — un agent funcțional în 6 pași
 
 <Tip>
-  Scopul acestui flux rapid este să ai un agent care **sună și răspunde coerent**. Rafinarea
-  (prompt, voce, tools) vine după, prin iterare continuă.
+  Scopul acestui flux rapid este să ai un agent care **sună și răspunde coerent**. Rafinarea (prompt, voce, tools) vine după, prin iterare continuă.
 </Tip>
 
 <Steps>
   <Step title="Creează agentul (tab Profil)">
-    Apasă **New agent**, dă-i un **nume** clar (ex: „Colectare facturi neachitate") și alege
-    **direcția**: *outbound* (agentul sună) sau *inbound* (agentul răspunde).
+    Apasă **New agent**, dă-i un **nume** clar (ex: „Colectare facturi neachitate") și alege **direcția**: _outbound_ (agentul sună) sau _inbound_ (agentul răspunde).
   </Step>
   <Step title="Alege creierul și vocea (tab Setări)">
-    Setează **modelul LLM** și **furnizorul TTS** + vocea. Pentru română, un punct de plecare bun:
-    `eleven_flash_v2_5` cu limba `ro`. Detalii în secțiunea **Setări** de mai jos.
+    Setează **modelul LLM** și **furnizorul TTS** \+ vocea. Pentru română, un punct de plecare bun: `eleven_flash_v2_5` cu limba `ro`. Detalii în secțiunea **Setări** de mai jos.
   </Step>
   <Step title="Scrie primul prompt (tab Prompturi)">
-    Apasă **New prompt**, definește **identitatea + scopul apelului**, apoi **limitele** și
-    **regulile de conversație**. Salvează și marchează promptul ca **activ**.
+    Apasă **New prompt**, definește **identitatea \+ scopul apelului**, apoi **limitele** și **regulile de conversație**. Salvează și marchează promptul ca **activ**.
   </Step>
   <Step title="Adaugă snippets reutilizabile (tab Snippets)">
-    Inserează module gata făcute (ex: vorbire naturală, promisiune de plată) cu `{{slug}}`,
-    ca să nu rescrii aceleași reguli în fiecare prompt.
+    Inserează module gata făcute (ex: vorbire naturală, promisiune de plată) cu `{{slug}}`, ca să nu rescrii aceleași reguli în fiecare prompt.
   </Step>
   <Step title="Activează tool-urile necesare (tab Tools)">
-    Dacă apelul poate necesita transfer la un agent uman, activează tool-ul de **transfer** și
-    completează prompt-ul lui, numărul de telefon și programul de lucru.
+    Dacă apelul poate necesita transfer la un agent uman, activează tool-ul de **transfer** și completează prompt-ul lui, numărul de telefon și programul de lucru.
   </Step>
   <Step title="Atribuie reguli de extragere (tab Extragere date)">
     Bifează regulile pe care vrei să le ruleze agentul după apel (ex: a promis plata? satisfacție?).
@@ -71,49 +68,42 @@ Fiecare agent este configurat prin 6 taburi. Le parcurgi, în mare, în ordinea 
 </Steps>
 
 <Check>
-  După acești pași agentul este gata de un **apel de test**. Ascultă reînregistrarea, citește
-  transcriptul și ajustează promptul — testarea și iterarea sunt parte din proces, nu un pas opțional.
+  După acești pași agentul este gata de un **apel de test**. Ascultă reînregistrarea, citește transcriptul și ajustează promptul — testarea și iterarea sunt parte din proces, nu un pas opțional.
 </Check>
 
 ---
 
 ## Tab Profil
 
-Tabul **Profil** definește *cine este* agentul.
+Tabul **Profil** definește _cine este_ agentul.
 
 | Câmp | Rol |
 | --- | --- |
 | **Nume** | Identifică agentul în liste, rapoarte și apeluri. Folosește nume descriptive după scop. |
-| **Direcție** | *Outbound* (agentul inițiază apelul) sau *inbound* (agentul preia apeluri). |
+| **Direcție** | _Outbound_ (agentul inițiază apelul) sau _inbound_ (agentul preia apeluri). |
 | **Prompt activ** | Promptul care guvernează comportamentul în acest moment. Un agent poate avea mai multe prompturi, dar **unul singur activ** per direcție. |
 
 <Note>
-  Promptul activ este afișat ca etichetă pe cardul agentului. Schimbarea promptului activ schimbă
-  instantaneu comportamentul agentului la următorul apel.
+  Promptul activ este afișat ca etichetă pe cardul agentului. Schimbarea promptului activ schimbă instantaneu comportamentul agentului la următorul apel.
 </Note>
 
 ---
 
 ## Tab Setări
 
-Setările sunt **siguranța preventivă** și „mecanica" agentului — cum aude, cum gândește și cum
-vorbește. Sunt grupate pe blocuri.
+Setările sunt **siguranța preventivă** și „mecanica" agentului — cum aude, cum gândește și cum vorbește. Sunt grupate pe blocuri.
 
 <AccordionGroup>
   <Accordion title="Agent Session — model LLM & runtime" icon="brain">
     Creierul agentului și comportamentul în timpul conversației.
 
-    - **LLM provider** / **LLM** — furnizorul și modelul (ex: `openai` / `openai/gpt-5.2-chat-latest`).
-      Modelul determină cât de bine „raționează" agentul.
+    - **LLM provider** / **LLM** — furnizorul și modelul (ex: `openai` / `openai/gpt-5.2-chat-latest`). Modelul determină cât de bine „raționează" agentul.
     - **Allow interruptions** — permite utilizatorului să întrerupă agentul (conversație naturală).
-    - **Min endpointing delay** / **Min interruption duration** / **Min interruption words** —
-      cât de „răbdător" e agentul înainte să considere că utilizatorul a terminat de vorbit sau că
-      l-a întrerupt. Reglajele anti-întrerupere falsă.
+    - **Min endpointing delay** / **Min interruption duration** / **Min interruption words** — cât de „răbdător" e agentul înainte să considere că utilizatorul a terminat de vorbit sau că l-a întrerupt. Reglajele anti-întrerupere falsă.
     - **Preemptive generation**, **Resume on false interruption** — optimizări de fluiditate.
 
     <Warning>
-      Aceste praguri afectează direct cât de natural sună agentul. Valori prea agresive → agentul
-      taie utilizatorul; prea relaxate → pauze lungi. Reglează-le testând apeluri reale.
+      Aceste praguri afectează direct cât de natural sună agentul. Valori prea agresive → agentul taie utilizatorul; prea relaxate → pauze lungi. Reglează-le testând apeluri reale.
     </Warning>
   </Accordion>
 
@@ -121,22 +111,17 @@ vorbește. Sunt grupate pe blocuri.
     **TTS (Text-To-Speech)** transformă răspunsul agentului în voce. Alegi furnizorul din **TTS provider**:
 
     <CardGroup cols={2}>
-      <Card title="ElevenLabs">Voce + `language`, `model` (ex: `eleven_flash_v2_5`), normalizare text, voice settings: stability, similarity, style, speed.</Card>
-      <Card title="Cartesia">`model`, `voice`, `language`, `speed`, `volume`.</Card>
-      <Card title="Minimax">`model`, `voice`, `speed`, `emotion`.</Card>
-      <Card title="Inworld">`model`, `voice`, `language`, `temperature`, `speaking_rate`.</Card>
+         
     </CardGroup>
 
-    Pentru **ElevenLabs** ai și **preset de voci** (Ana, Andrei, Alex, Mihai, Andreea, Corina, Eva,
-    David) cu sample audio — alegi vocea ascultând direct.
+    Pentru **ElevenLabs** ai și **preset de voci** (Ana, Andrei, Alex, Mihai, Andreea, Corina, Eva, David) cu sample audio — alegi vocea ascultând direct.
   </Accordion>
 
   <Accordion title="STT — recunoașterea vocii (Soniox)" icon="ear">
     **STT (Speech-To-Text)** transcrie ce spune utilizatorul. Reglaje importante:
 
     - **Language hints** (ex: `ro, en`) și **language identification** — ajută la limbi multiple.
-    - **Context text / topic / intent** — „text context" care orientează recunoașterea spre
-      domeniul apelului (ex: termeni de facturare), crescând acuratețea.
+    - **Context text / topic / intent** — „text context" care orientează recunoașterea spre domeniul apelului (ex: termeni de facturare), crescând acuratețea.
     - **Terms** — listă de termeni speciali (nume proprii, produse) pe care STT trebuie să-i prindă corect.
     - **Max endpoint delay** — cât așteaptă înainte de a închide un segment de vorbire.
   </Accordion>
@@ -156,7 +141,7 @@ vorbește. Sunt grupate pe blocuri.
     | --- | --- |
     | **Default outbound intro** | Salutul când agentul sună (outbound). |
     | **Default inbound intro (known / unknown)** | Salut la apel primit, diferit dacă apelantul e cunoscut sau nu. |
-    | **Silence warning 1 / 2** | Avertismentele de tăcere (corelat cu *user silence settings*). |
+    | **Silence warning 1 / 2** | Avertismentele de tăcere (corelat cu _user silence settings_). |
     | **Closing message / Silence hangup** | Mesajul de închidere a apelului. |
   </Accordion>
 </AccordionGroup>
@@ -166,12 +151,10 @@ vorbește. Sunt grupate pe blocuri.
 ## Tab Prompturi
 
 <Tip>
-  **Aici are loc magia.** Promptul definește în cea mai mare parte comportamentul și acțiunile
-  agentului. Necesită verificări și iterări continue — un agent bun se construiește prin teste repetate.
+  **Aici are loc magia.** Promptul definește în cea mai mare parte comportamentul și acțiunile agentului. Necesită verificări și iterări continue — un agent bun se construiește prin teste repetate.
 </Tip>
 
-Un agent poate avea **mai multe prompturi**, pe care le activezi sau dezactivezi după nevoie
-(ex: o variantă pentru o campanie, alta pentru alta).
+Un agent poate avea **mai multe prompturi**, pe care le activezi sau dezactivezi după nevoie (ex: o variantă pentru o campanie, alta pentru alta).
 
 ### Logica promptului — construit în straturi
 
@@ -188,27 +171,22 @@ Promptul nu se scrie „dintr-o suflare". Se construiește pe straturi, fiecare 
     Tonul, stilul de vorbire și scenariile principale de răspuns.
   </Step>
   <Step title="Snippeturi reutilizabile">
-    Module pentru reguli importante: vorbire naturală, gestionarea mesajelor incomplete,
-    salvarea promisiunilor de plată, folosirea contextului dinamic, închiderea apelului.
+    Module pentru reguli importante: vorbire naturală, gestionarea mesajelor incomplete, salvarea promisiunilor de plată, folosirea contextului dinamic, închiderea apelului.
   </Step>
   <Step title="Bază de cunoștințe & context client">
-    La final adaugi contextul specific fiecărui client, ca agentul să adapteze discuția la
-    situația reală — păstrând **același comportament, ton și proces**.
+    La final adaugi contextul specific fiecărui client, ca agentul să adapteze discuția la situația reală — păstrând **același comportament, ton și proces**.
   </Step>
 </Steps>
 
 <Note>
-  Această stratificare este cheia consistenței: contextul clientului se schimbă de la apel la apel,
-  dar identitatea, limitele și regulile rămân stabile.
+  Această stratificare este cheia consistenței: contextul clientului se schimbă de la apel la apel, dar identitatea, limitele și regulile rămân stabile.
 </Note>
 
 ---
 
 ## Tab Snippets
 
-Snippeturile sunt, de fapt, **prompturi separate** — module reutilizabile. Le creezi o dată
-pentru un scop și le poți insera rapid în promptul oricărui agent, ca să nu construiești
-prompturi uriașe și greu de întreținut.
+Snippeturile sunt, de fapt, **prompturi separate** — module reutilizabile. Le creezi o dată pentru un scop și le poți insera rapid în promptul oricărui agent, ca să nu construiești prompturi uriașe și greu de întreținut.
 
 Inserarea se face cu sintaxa `{{slug}}`:
 
@@ -220,12 +198,11 @@ Vorbește natural și empatic.
 
 <CardGroup cols={2}>
   <Card title="De ce snippets?" icon="recycle">
-    Definești o regulă o singură dată și o refolosești în toți agenții. O modifici într-un loc,
-    se actualizează peste tot.
+    Definești o regulă o singură dată și o refolosești în toți agenții. O modifici într-un loc, se actualizează peste tot.
   </Card>
+
   <Card title="Cum le inserezi" icon="mouse-pointer-click">
-    Din pickerul de sub textarea de prompt: cauți snippetul și îl inserezi (drag & drop sau click),
-    iar în prompt apare `{{slug}}`.
+    Din pickerul de sub textarea de prompt: cauți snippetul și îl inserezi (drag & drop sau click), iar în prompt apare `{{slug}}`.
   </Card>
 </CardGroup>
 
@@ -233,13 +210,10 @@ Vorbește natural și empatic.
 
 ## Tab Tools
 
-Tool-urile sunt **acțiuni** pe care agentul le poate declanșa în timpul apelului. Exemplul clasic:
-clientul cere să fie redirecționat sau să vorbească cu un om → creezi un tool de **transfer**
-către agentul uman.
+Tool-urile sunt **acțiuni** pe care agentul le poate declanșa în timpul apelului. Exemplul clasic: clientul cere să fie redirecționat sau să vorbească cu un om → creezi un tool de **transfer** către agentul uman.
 
 <Warning>
-  Fiecare tool are nevoie de **propriul prompt** — o descriere comportamentală care spune agentului
-  *ce face tool-ul* și **când** trebuie declanșat.
+  Fiecare tool are nevoie de **propriul prompt** — o descriere comportamentală care spune agentului _ce face tool-ul_ și **când** trebuie declanșat.
 </Warning>
 
 În funcție de tool se adaugă și caracteristici suplimentare:
@@ -248,9 +222,9 @@ către agentul uman.
   <Card title="Prompt comportamental" icon="message-square">
     Descrie scopul tool-ului și condiția de declanșare (ex: „când clientul cere un operator uman").
   </Card>
+
   <Card title="Parametri specifici" icon="settings">
-    Pentru transfer: **numărul de telefon** destinație și **programul de lucru** (orele în care
-    transferul e disponibil).
+    Pentru transfer: **numărul de telefon** destinație și **programul de lucru** (orele în care transferul e disponibil).
   </Card>
 </CardGroup>
 
@@ -258,22 +232,19 @@ către agentul uman.
 
 ## Tab Extragere date
 
-Regulile de extragere se aplică **post-apel**: agentul verifică transcriptul și scoate informații
-structurate (ex: a promis plata? ce sumă? nivel de satisfacție?).
+Regulile de extragere se aplică **post-apel**: agentul verifică transcriptul și scoate informații structurate (ex: a promis plata? ce sumă? nivel de satisfacție?).
 
 <Steps>
   <Step title="Definești regulile în secțiunea dedicată">
     Regulile de extragere se creează în secțiunea separată **Extragere date** a platformei.
   </Step>
   <Step title="Le atribui agentului aici">
-    În tabul agentului regulile sunt deja presetate — tu doar **bifezi** pe cele pe care vrei să
-    le ruleze acest agent.
+    În tabul agentului regulile sunt deja presetate — tu doar **bifezi** pe cele pe care vrei să le ruleze acest agent.
   </Step>
 </Steps>
 
 <Info>
-  Pentru că extragerea rulează **după** apel, ea nu afectează conversația în timp real — e stratul
-  de analiză care transformă transcriptul în date utilizabile în rapoarte și CRM.
+  Pentru că extragerea rulează **după** apel, ea nu afectează conversația în timp real — e stratul de analiză care transformă transcriptul în date utilizabile în rapoarte și CRM.
 </Info>
 
 ---
@@ -284,23 +255,24 @@ structurate (ex: a promis plata? ce sumă? nivel de satisfacție?).
   <Accordion title="Profil & Setări" icon="circle-check">
     - Nume descriptiv și direcție corectă (inbound/outbound)
     - Model LLM ales și testat
-    - Furnizor TTS + voce confirmate pe un sample audio
+    - Furnizor TTS \+ voce confirmate pe un sample audio
     - STT cu language hints și termeni speciali pentru domeniu
     - Fraze de intro și de închidere completate
   </Accordion>
+
   <Accordion title="Prompt & Snippets" icon="circle-check">
     - Prompt structurat pe straturi (identitate → limite → reguli → snippets → context)
     - Un singur prompt **activ** per direcție
     - Snippeturile comune inserate cu `{{slug}}`
   </Accordion>
+
   <Accordion title="Tools & Extragere" icon="circle-check">
-    - Tool de transfer configurat (prompt + număr + program), dacă e cazul
+    - Tool de transfer configurat (prompt \+ număr \+ program), dacă e cazul
     - Reguli de extragere relevante bifate
     - Cel puțin un **apel de test** ascultat și transcript verificat
   </Accordion>
 </AccordionGroup>
 
 <Tip>
-  Un agent nu e „gata" la prima salvare. Cel mai bun rezultat vine din **iterare**: rulezi apeluri,
-  citești transcripturile, ajustezi promptul și setările, repeți.
+  Un agent nu e „gata" la prima salvare. Cel mai bun rezultat vine din **iterare**: rulezi apeluri, citești transcripturile, ajustezi promptul și setările, repeți.
 </Tip>
