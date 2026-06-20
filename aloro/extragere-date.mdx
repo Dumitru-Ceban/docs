@@ -1,0 +1,235 @@
+---
+title: "Extragere date"
+description: "Reguli AI care citesc transcriptul după apel și extrag informații structurate — cum le creezi, cât contează promptul, condițiile de notificare, testarea și rularea pe multe apeluri."
+icon: "filter"
+---
+
+<Info>
+  **Extragere date** (`/data-extraction`) este una dintre cele mai puternice secțiuni. Aici creezi
+  **reguli** care, **după fiecare apel**, citesc transcriptul cu ajutorul AI și extrag o informație
+  structurată (ex: *data promisiunii de plată*). Valorile extrase se salvează ca **note** pe apel și
+  pot declanșa **notificări** și **email-uri** pe baza unor condiții.
+</Info>
+
+## Cum funcționează (pe scurt)
+
+<Steps>
+  <Step title="Creezi o regulă">
+    Definești ce să extragă AI din transcript (titlu, parametru, tip, prompt).
+  </Step>
+  <Step title="O atribui agenților">
+    Regulile sunt globale; le bifezi per agent în **Agenți → tab Extragere date**.
+  </Step>
+  <Step title="Rulează automat după apel">
+    La primirea transcriptului, regulile active rulează pe transcript și salvează valoarea extrasă
+    în notele apelului (`agent_notes`).
+  </Step>
+  <Step title="Notifică (opțional)">
+    Dacă valoarea îndeplinește condiția setată, se creează o notificare în aplicație și/sau se
+    trimite email.
+  </Step>
+</Steps>
+
+<Note>
+  Extragerea rulează **post-apel** și **nu** afectează conversația în timp real. Mai multe reguli ale
+  aceluiași agent sunt procesate eficient, împreună, pe același transcript.
+</Note>
+
+---
+
+## Editorul de regulă
+
+Apeși **Regula nouă** ca să deschizi editorul. Antetul arată versiunea regulii (`RULE V.0`),
+**Restore default** și un status (`Ready`).
+
+<Frame caption="Editorul de regulă — câmpurile de bază: titlu, parametru, tip, prompt și notificări.">
+  <img src="/images/aloro/data-extraction-editor.png" alt="Editor regulă — câmpuri de bază" />
+</Frame>
+
+### Câmpurile de bază
+
+<AccordionGroup>
+  <Accordion title="Titlu regulă" icon="tag">
+    Numele afișat al regulii (ex: **Promisiune plată**). Apare în note și notificări.
+  </Accordion>
+  <Accordion title="Nume parametru de extras" icon="hash">
+    Slug-ul valorii extrase (ex: `data_promisiune_plata`). **Un singur slug**: litere mici, cifre,
+    `_` sau `-`. Este cheia sub care se salvează valoarea.
+  </Accordion>
+  <Accordion title="Tip parametru" icon="shapes">
+    Tipul valorii extrase, care determină cum e interpretată și ce condiții de notificare ai:
+
+    | Tip | Folosit pentru |
+    | --- | --- |
+    | **Text** | text liber (implicit) |
+    | **Număr** | valori numerice |
+    | **Dată** | date (format `AAAA-LL-ZZ`) |
+    | **Boolean (da/nu)** | adevărat / fals |
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Promptul — inima regulii
+
+<Tip>
+  **Promptul este partea cea mai importantă.** El îi spune modelului AI *exact ce* să caute în
+  transcript și *în ce format* să întoarcă valoarea. Un prompt bun = extrageri corecte și constante.
+</Tip>
+
+Câmpul **„Prompt — ce să extragă din transcript"** este instrucțiunea trimisă modelului (implicit
+un model rapid, optimizat pentru extragere). Caracteristicile unui prompt bun:
+
+<CardGroup cols={2}>
+  <Card title="Specific" icon="crosshair">
+    Descrie clar informația țintă (ex: „data explicită a promisiunii de plată menționată de client").
+  </Card>
+  <Card title="Cu format" icon="ruler">
+    Spune formatul așteptat (ex: dată `AAAA-LL-ZZ`, număr rotunjit, una din valori fixe).
+  </Card>
+  <Card title="Fără inferențe" icon="ban">
+    Cere doar informații **explicite**, nu deduceri — ca să eviți valori inventate.
+  </Card>
+  <Card title="Tratează lipsa" icon="circle-help">
+    Spune ce să facă dacă informația lipsește (ex: să întoarcă gol / null).
+  </Card>
+</CardGroup>
+
+<Warning>
+  Promptul cere **verificare și iterare**: scrii, testezi pe un apel real (vezi mai jos), ajustezi și
+  repeți până extragerea e stabilă. Nu te baza pe prima formă.
+</Warning>
+
+---
+
+## Logica și condițiile de aplicare
+
+Sub prompt setezi comportamentul regulii.
+
+<Frame caption="Comportament + notificări + iconul regulii.">
+  <img src="/images/aloro/data-extraction-icon-test.png" alt="Comportament, notificări și icon regulă" />
+</Frame>
+
+<AccordionGroup>
+  <Accordion title="Regulă activă" icon="power">
+    Doar regulile **active** rulează la extragerea post-apel.
+  </Accordion>
+  <Accordion title="Notify (notificare în aplicație)" icon="bell">
+    Când valoarea extrasă îndeplinește condiția, se creează o **notificare** în dashboard.
+  </Accordion>
+  <Accordion title="Trimite email" icon="mail">
+    Trimite și **email** către destinatarii setați când condiția e îndeplinită. Email-urile sunt
+    **grupate (batched)** și trimise periodic. Necesită setări SMTP configurate în proiect.
+  </Accordion>
+  <Accordion title="Notifică doar când" icon="filter">
+    Condiția care decide când se declanșează notificarea/email-ul. Opțiunile depind de **tipul** parametrului:
+
+    | Tip | Operatori disponibili |
+    | --- | --- |
+    | **Text** | nu este gol, conține, este egal cu |
+    | **Număr** | are valoare, `>`, `<`, `>=`, `<=`, `=` |
+    | **Dată** | are valoare, este azi, este mâine, este în trecut, în următoarele N zile, este egal cu |
+    | **Boolean** | este adevărat, este fals |
+
+    Exemplu: tip **Dată** + **în următoarele N zile** cu valoarea `7` → notifică pentru promisiuni
+    de plată scadente în 7 zile.
+  </Accordion>
+</AccordionGroup>
+
+### Iconul regulii
+
+Alegi un **icon** dintr-o listă presetată (sau încarci unul propriu — PNG/JPG/GIF/WEBP, max 512 KB),
+îi setezi **culoarea**, și bifezi **„Arată iconul pe apel în calls-hub"** ca valoarea extrasă să apară
+ca badge colorat pe cardul apelului în secțiunea Apeluri.
+
+La final apeși **Salvează**. (La editarea unei reguli existente apare și butonul de **Ștergere** —
+notele deja extrase rămân pe apeluri.)
+
+<Note>
+  Regulile sunt **globale**. După ce salvezi, mergi în **Agenți → tab Extragere date**, bifezi regula
+  pentru agenții doriți și salvezi — abia atunci regula rulează pentru acei agenți.
+</Note>
+
+---
+
+## Testarea regulii pe un apel
+
+Înainte de a o pune în producție, testează regula pe un transcript real.
+
+<Steps>
+  <Step title="Introdu un Call ID">
+    În panoul **Testează regula**, pune ID-ul unui apel cu transcript.
+  </Step>
+  <Step title="Apasă „Testează pe apel”">
+    Regula curentă (chiar **nesalvată**) rulează pe transcriptul acelui apel.
+  </Step>
+  <Step title="Analizează rezultatul">
+    Vezi dacă valoarea a fost găsită, valoarea brută vs. cea interpretată, eventuale erori de tip și
+    dacă notificarea s-ar declanșa.
+  </Step>
+</Steps>
+
+<Warning>
+  Testul este un **dry-run**: **nu** salvează note, **nu** modifică transcriptul și **nu** trimite
+  notificări. E sigur să-l rulezi de câte ori vrei în timp ce ajustezi promptul.
+</Warning>
+
+---
+
+## Rularea pe mai multe apeluri (bulk)
+
+Când regula e bună, o poți aplica retroactiv pe **apeluri istorice** care îndeplinesc filtrele.
+
+<Frame caption="Rulează regula salvată pe multe apeluri, cu filtre și limite de siguranță.">
+  <img src="/images/aloro/data-extraction-bulk-run.png" alt="Rulează regula pe apeluri (bulk)" />
+</Frame>
+
+<AccordionGroup>
+  <Accordion title="Filtre" icon="sliders-horizontal">
+    - **Interval start / Interval end** — fereastra de timp a apelurilor.
+    - **Durata minimă (sec)** — exclude apelurile prea scurte (implicit 60).
+    - **Agent (opțional)** — toți agenții sau unul anume.
+    - **Max apeluri (1–200)** — limită de siguranță per rulare (implicit 50).
+  </Accordion>
+  <Accordion title="Opțiuni" icon="list-checks">
+    - **Doar apeluri răspunse (status completed)** — doar apelurile finalizate cu succes.
+    - **Doar apeluri fără extragere pentru această regulă** — sare peste apelurile care au deja o
+      notă de la această regulă (evită duplicate).
+  </Accordion>
+</AccordionGroup>
+
+Apeși **Rulează pe apeluri**. Procesarea rulează în fundal, în loturi, cu **progres în timp real**,
+și o poți **opri** oricând. La final vezi metrici: apeluri identificate, procesate, note inserate,
+sărite (deja extrase / fără transcript) și eșuări.
+
+<Warning>
+  Regula trebuie **salvată** înainte de bulk run. Notele extrase se salvează în `agent_notes`, dar
+  rularea **nu** marchează transcriptul ca finalizat — alte reguli pot rula în continuare.
+</Warning>
+
+<Tip>
+  Tipare de siguranță: limită de 1–200 apeluri per rulare, procesare în loturi, idempotență (la
+  reluare, notele anterioare ale regulii pentru acel apel sunt rescrise, nu duplicate).
+</Tip>
+
+---
+
+## Flux complet recomandat
+
+<Steps>
+  <Step title="Creezi regula">
+    Titlu, parametru, tip, **prompt** clar. Salvezi.
+  </Step>
+  <Step title="Testezi pe un apel real">
+    „Testează pe apel" → ajustezi promptul → re-testezi până e stabil.
+  </Step>
+  <Step title="Atribui agenților">
+    Agenți → Extragere date → bifezi regula → salvezi.
+  </Step>
+  <Step title="(Opțional) procesezi istoricul">
+    „Rulează pe apeluri" pe intervalul dorit, cu limitele de siguranță.
+  </Step>
+  <Step title="Activezi notificările">
+    Setezi „Notifică doar când" + email, ca echipa să fie alertată la valorile importante.
+  </Step>
+</Steps>
