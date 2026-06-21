@@ -50,7 +50,14 @@
           "aloro/agenti",
           "aloro/clienti",
           "aloro/campanii",
-          "aloro/numere-telefon",
+          "aloro/numere-telefon"
+        ]
+      },
+      {
+        "group": "Extragere date",
+        "icon": "filter",
+        "expanded": true,
+        "pages": [
           "aloro/extragere-date"
         ]
       },
