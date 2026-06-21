@@ -1,0 +1,147 @@
+---
+title: "Catalog Produse"
+description: "Baze de produse (CSV) pe care agentul le caută în timpul apelului ca să răspundă despre produse și prețuri."
+icon: "box"
+---
+
+<Info>
+  **Catalog Produse** (`/product-catalog`) îți permite să creezi **cataloage de produse** pe care le
+  **atribui agenților**. În timpul apelului, agentul poate **căuta** în catalog ca să răspundă la
+  întrebări de tipul „aveți produsul X?" sau „cât costă Y?".
+</Info>
+
+## Cum funcționează
+
+<Steps>
+  <Step title="Creezi un catalog">
+    Îi dai un nume și un **slug** (identificator). Catalogul e, de fapt, un fișier **CSV** cu produse.
+  </Step>
+  <Step title="Adaugi produsele">
+    Încarci un CSV sau adaugi produsele manual (nume, preț, descriere etc.).
+  </Step>
+  <Step title="Scrii un prompt pentru catalog">
+    Instrucțiuni pentru agent: ce conține catalogul și cum să-l folosească.
+  </Step>
+  <Step title="Îl atribui agentului">
+    În **Agenți**, bifezi catalogul pentru agentul dorit. Promptul catalogului se adaugă automat în
+    promptul agentului.
+  </Step>
+  <Step title="Agentul caută în apel">
+    Când clientul întreabă de un produs, agentul caută în catalog și prezintă rezultatele relevante.
+  </Step>
+</Steps>
+
+<Note>
+  Legătura cheie: **catalog + agent**. Un catalog devine util doar după ce este atribuit unui agent
+  (din secțiunea Agenți). Promptul catalogului se injectează automat în comportamentul agentului.
+</Note>
+
+---
+
+## Lista de cataloage
+
+Pagina arată toate cataloagele, cu:
+
+| Coloană | Ce arată |
+| --- | --- |
+| **Nume** | Numele catalogului (ex: „Telefoane"). |
+| **Slug** | Identificatorul folosit de agent (ex: `telefoane`). |
+| **Fișier** | Numele fișierului CSV. |
+| **Produse** | Numărul de produse din catalog. |
+| **Feed Sync** | Starea sincronizării automate (dacă e configurată un feed). |
+| **Actualizat** | Ultima modificare. |
+
+Apeși **Adaugă catalog** ca să creezi unul nou, sau **click pe un rând** ca să-l deschizi.
+
+---
+
+## Adaugă / editează un catalog
+
+<AccordionGroup>
+  <Accordion title="Câmpuri de bază" icon="box">
+    - **Nume catalog** — numele afișat (obligatoriu).
+    - **Slug (identificator API)** — folosit de agent ca `catalog="slug"`; doar litere mici, cifre,
+      `-` sau `_`; unic per proiect (obligatoriu).
+  </Accordion>
+  <Accordion title="Sincronizare automată (opțional)" icon="rotate-cw">
+    - **URL Feed** — adresa unui CSV extern care va înlocui zilnic catalogul.
+    - **Ora descărcare (0–23)** — ora la care se descarcă feed-ul (lasă gol pentru a dezactiva).
+
+    Util ca să ții catalogul la zi automat cu lista unui furnizor.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  La **ștergerea** unui catalog se șterge și fișierul CSV asociat și legăturile cu agenții. Acțiunea
+  cere confirmare.
+</Warning>
+
+---
+
+## Detaliul catalogului — două taburi
+
+Când deschizi un catalog, ai două taburi:
+
+<CardGroup cols={2}>
+  <Card title="Produse" icon="table">
+    Tabelul cu produse (coloanele vin din CSV). Cauți, adaugi, editezi sau ștergi produse.
+  </Card>
+  <Card title="Prompt" icon="wand-sparkles">
+    Instrucțiunile pentru agent — cum să folosească acest catalog. Se injectează automat în promptul
+    agentului care are acces.
+  </Card>
+</CardGroup>
+
+### Tab Produse
+
+În bara de sus ai: **Sincronizează feed** (dacă e configurat), **Descarcă** (export CSV),
+**Încarcă CSV** (import), o **căutare** rapidă și **Adaugă** (produs nou).
+
+- **Adaugă / Editează produs** — un câmp per coloană din CSV. La editare, prima coloană (ID-ul) e
+  read-only ca să nu creezi duplicate.
+- **Șterge produs** — cu confirmare, pe rândul respectiv.
+
+### Tab Prompt
+
+<Tip>
+  Promptul catalogului contează: aici spui agentului **când** și **cum** să folosească produsele
+  (ex: „menționează garanția după preț", „sortează după preț crescător"). Acest text intră automat
+  în comportamentul agentului care are catalogul atribuit.
+</Tip>
+
+---
+
+## Import CSV (în masă)
+
+<Steps>
+  <Step title="Alegi fișierul">
+    Tragi un `.csv` în zona de upload (max 5 MB, minim 2 coloane). Delimitatorul (`,` sau `;`) e
+    detectat automat.
+  </Step>
+  <Step title="Verifici">
+    Apeși **Verifică** — vezi numărul de rânduri/coloane, plus erori (ex: ID gol, ID duplicat) și avertismente.
+  </Step>
+  <Step title="Aplici">
+    Dacă nu sunt erori, apeși **Aplică** și CSV-ul nou **înlocuiește** catalogul. Dacă sunt duplicate,
+    poți **Forța** importul (se păstrează ultima apariție a fiecărui ID).
+  </Step>
+</Steps>
+
+```csv Exemplu CSV
+ID,Nume,Pret,Moneda,Categorie,Descriere
+1001,Samsung Galaxy A51,1200,RON,Telefoane,Smartphone 64GB negru
+1002,iPhone 12,4500,RON,Telefoane,Smartphone 128GB albastru
+```
+
+<Note>
+  Prima coloană este tratată ca **ID unic** (folosit la detectarea duplicatelor). Restul coloanelor
+  sunt libere — pune ce informații îți trebuie (preț, monedă, stoc, garanție etc.).
+</Note>
+
+---
+
+## Atribuirea către agent
+
+Un catalog se folosește doar după ce este atribuit. În **Agenți**, la secțiunea de cataloage,
+bifezi cataloagele la care agentul are acces și salvezi. De atunci, agentul poate căuta în ele în
+timpul apelurilor, iar promptul fiecărui catalog îi modelează comportamentul.
