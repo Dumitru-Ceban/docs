@@ -59,13 +59,13 @@ Apeși **Adaugă catalog** ca să creezi unul nou, sau **click pe un rând** ca 
 
 <AccordionGroup>
   <Accordion title="Câmpuri de bază" icon="box">
-    - **Nume catalog** — numele afișat (obligatoriu).
-    - **Slug (identificator API)** — folosit de agent ca `catalog="slug"`; doar litere mici, cifre,
+    - **Nume catalog** - numele afișat (obligatoriu).
+    - **Slug (identificator API)** - folosit de agent ca `catalog="slug"`; doar litere mici, cifre,
       `-` sau `_`; unic per proiect (obligatoriu).
   </Accordion>
   <Accordion title="Sincronizare automată (opțional)" icon="rotate-cw">
-    - **URL Feed** — adresa unui CSV extern care va înlocui zilnic catalogul.
-    - **Ora descărcare (0–23)** — ora la care se descarcă feed-ul (lasă gol pentru a dezactiva).
+    - **URL Feed** - adresa unui CSV extern care va înlocui zilnic catalogul.
+    - **Ora descărcare (0-23)** - ora la care se descarcă feed-ul (lasă gol pentru a dezactiva).
 
     Util ca să ții catalogul la zi automat cu lista unui furnizor.
   </Accordion>
@@ -78,7 +78,7 @@ Apeși **Adaugă catalog** ca să creezi unul nou, sau **click pe un rând** ca 
 
 ---
 
-## Detaliul catalogului — două taburi
+## Detaliul catalogului - două taburi
 
 Când deschizi un catalog, ai două taburi:
 
@@ -87,7 +87,7 @@ Când deschizi un catalog, ai două taburi:
     Tabelul cu produse (coloanele vin din CSV). Cauți, adaugi, editezi sau ștergi produse.
   </Card>
   <Card title="Prompt" icon="wand-sparkles">
-    Instrucțiunile pentru agent — cum să folosească acest catalog. Se injectează automat în promptul
+    Instrucțiunile pentru agent - cum să folosească acest catalog. Se injectează automat în promptul
     agentului care are acces.
   </Card>
 </CardGroup>
@@ -97,9 +97,9 @@ Când deschizi un catalog, ai două taburi:
 În bara de sus ai: **Sincronizează feed** (dacă e configurat), **Descarcă** (export CSV),
 **Încarcă CSV** (import), o **căutare** rapidă și **Adaugă** (produs nou).
 
-- **Adaugă / Editează produs** — un câmp per coloană din CSV. La editare, prima coloană (ID-ul) e
+- **Adaugă / Editează produs** - un câmp per coloană din CSV. La editare, prima coloană (ID-ul) e
   read-only ca să nu creezi duplicate.
-- **Șterge produs** — cu confirmare, pe rândul respectiv.
+- **Șterge produs** - cu confirmare, pe rândul respectiv.
 
 ### Tab Prompt
 
@@ -119,7 +119,7 @@ Când deschizi un catalog, ai două taburi:
     detectat automat.
   </Step>
   <Step title="Verifici">
-    Apeși **Verifică** — vezi numărul de rânduri/coloane, plus erori (ex: ID gol, ID duplicat) și avertismente.
+    Apeși **Verifică** - vezi numărul de rânduri/coloane, plus erori (ex: ID gol, ID duplicat) și avertismente.
   </Step>
   <Step title="Aplici">
     Dacă nu sunt erori, apeși **Aplică** și CSV-ul nou **înlocuiește** catalogul. Dacă sunt duplicate,
@@ -135,7 +135,7 @@ ID,Nume,Pret,Moneda,Categorie,Descriere
 
 <Note>
   Prima coloană este tratată ca **ID unic** (folosit la detectarea duplicatelor). Restul coloanelor
-  sunt libere — pune ce informații îți trebuie (preț, monedă, stoc, garanție etc.).
+  sunt libere - pune ce informații îți trebuie (preț, monedă, stoc, garanție etc.).
 </Note>
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Extragere date"
-description: "Reguli AI care citesc transcriptul după apel și extrag informații structurate — cum le creezi, cât contează promptul, condițiile de notificare, testarea și rularea pe multe apeluri."
+description: "Reguli AI care citesc transcriptul după apel și extrag informații structurate - cum le creezi, cât contează promptul, condițiile de notificare, testarea și rularea pe multe apeluri."
 icon: "filter"
 ---
 
@@ -42,8 +42,8 @@ icon: "filter"
 Apeși **Regula nouă** ca să deschizi editorul. Antetul arată versiunea regulii (`RULE V.0`),
 **Restore default** și un status (`Ready`).
 
-<Frame caption="Editorul de regulă — câmpurile de bază: titlu, parametru, tip, prompt și notificări.">
-  <img src="/images/aloro/data-extraction-editor.png" alt="Editor regulă — câmpuri de bază" />
+<Frame caption="Editorul de regulă - câmpurile de bază: titlu, parametru, tip, prompt și notificări.">
+  <img src="/images/aloro/data-extraction-editor.png" alt="Editor regulă - câmpuri de bază" />
 </Frame>
 
 ### Câmpurile de bază
@@ -70,14 +70,14 @@ Apeși **Regula nouă** ca să deschizi editorul. Antetul arată versiunea regul
 
 ---
 
-## Promptul — inima regulii
+## Promptul - inima regulii
 
 <Tip>
   **Promptul este partea cea mai importantă.** El îi spune modelului AI *exact ce* să caute în
   transcript și *în ce format* să întoarcă valoarea. Un prompt bun = extrageri corecte și constante.
 </Tip>
 
-Câmpul **„Prompt — ce să extragă din transcript"** este instrucțiunea trimisă modelului (implicit
+Câmpul **„Prompt - ce să extragă din transcript"** este instrucțiunea trimisă modelului (implicit
 un model rapid, optimizat pentru extragere). Caracteristicile unui prompt bun:
 
 <CardGroup cols={2}>
@@ -88,7 +88,7 @@ un model rapid, optimizat pentru extragere). Caracteristicile unui prompt bun:
     Spune formatul așteptat (ex: dată `AAAA-LL-ZZ`, număr rotunjit, una din valori fixe).
   </Card>
   <Card title="Fără inferențe" icon="ban">
-    Cere doar informații **explicite**, nu deduceri — ca să eviți valori inventate.
+    Cere doar informații **explicite**, nu deduceri - ca să eviți valori inventate.
   </Card>
   <Card title="Tratează lipsa" icon="circle-help">
     Spune ce să facă dacă informația lipsește (ex: să întoarcă gol / null).
@@ -138,16 +138,16 @@ Sub prompt setezi comportamentul regulii.
 
 ### Iconul regulii
 
-Alegi un **icon** dintr-o listă presetată (sau încarci unul propriu — PNG/JPG/GIF/WEBP, max 512 KB),
+Alegi un **icon** dintr-o listă presetată (sau încarci unul propriu - PNG/JPG/GIF/WEBP, max 512 KB),
 îi setezi **culoarea**, și bifezi **„Arată iconul pe apel în calls-hub"** ca valoarea extrasă să apară
 ca badge colorat pe cardul apelului în secțiunea Apeluri.
 
-La final apeși **Salvează**. (La editarea unei reguli existente apare și butonul de **Ștergere** —
+La final apeși **Salvează**. (La editarea unei reguli existente apare și butonul de **Ștergere** -
 notele deja extrase rămân pe apeluri.)
 
 <Note>
   Regulile sunt **globale**. După ce salvezi, mergi în **Agenți → tab Extragere date**, bifezi regula
-  pentru agenții doriți și salvezi — abia atunci regula rulează pentru acei agenți.
+  pentru agenții doriți și salvezi - abia atunci regula rulează pentru acei agenți.
 </Note>
 
 ---
@@ -186,14 +186,14 @@ Când regula e bună, o poți aplica retroactiv pe **apeluri istorice** care în
 
 <AccordionGroup>
   <Accordion title="Filtre" icon="sliders-horizontal">
-    - **Interval start / Interval end** — fereastra de timp a apelurilor.
-    - **Durata minimă (sec)** — exclude apelurile prea scurte (implicit 60).
-    - **Agent (opțional)** — toți agenții sau unul anume.
-    - **Max apeluri (1–200)** — limită de siguranță per rulare (implicit 50).
+    - **Interval start / Interval end** - fereastra de timp a apelurilor.
+    - **Durata minimă (sec)** - exclude apelurile prea scurte (implicit 60).
+    - **Agent (opțional)** - toți agenții sau unul anume.
+    - **Max apeluri (1-200)** - limită de siguranță per rulare (implicit 50).
   </Accordion>
   <Accordion title="Opțiuni" icon="list-checks">
-    - **Doar apeluri răspunse (status completed)** — doar apelurile finalizate cu succes.
-    - **Doar apeluri fără extragere pentru această regulă** — sare peste apelurile care au deja o
+    - **Doar apeluri răspunse (status completed)** - doar apelurile finalizate cu succes.
+    - **Doar apeluri fără extragere pentru această regulă** - sare peste apelurile care au deja o
       notă de la această regulă (evită duplicate).
   </Accordion>
 </AccordionGroup>
@@ -204,11 +204,11 @@ sărite (deja extrase / fără transcript) și eșuări.
 
 <Warning>
   Regula trebuie **salvată** înainte de bulk run. Notele extrase se salvează în `agent_notes`, dar
-  rularea **nu** marchează transcriptul ca finalizat — alte reguli pot rula în continuare.
+  rularea **nu** marchează transcriptul ca finalizat - alte reguli pot rula în continuare.
 </Warning>
 
 <Tip>
-  Tipare de siguranță: limită de 1–200 apeluri per rulare, procesare în loturi, idempotență (la
+  Tipare de siguranță: limită de 1-200 apeluri per rulare, procesare în loturi, idempotență (la
   reluare, notele anterioare ale regulii pentru acel apel sunt rescrise, nu duplicate).
 </Tip>
 

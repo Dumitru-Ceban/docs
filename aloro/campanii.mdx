@@ -1,5 +1,5 @@
 ---
-title: "Campanii — Ghid complet"
+title: "Campanii - Ghid complet"
 description: "Apeluri în masă: încarci un fișier CSV, alegi data de început și urmărești progresul fiecărei rulări bulk."
 icon: "layer-group"
 ---
@@ -17,14 +17,14 @@ icon: "layer-group"
     Apeși **Încarcă fișier** și tragi un `.csv` în zona de upload (max 2000 rânduri).
   </Step>
   <Step title="Verifici fișierul">
-    Apeși **Verifică fișier** — sistemul validează rândurile **fără a modifica baza de date** și
+    Apeși **Verifică fișier** - sistemul validează rândurile **fără a modifica baza de date** și
     îți arată: Total / OK / Avertismente / Erori.
   </Step>
   <Step title="Configurezi rularea">
     Alegi prioritate, reîncercări și **data de început** a bulk-ului.
   </Step>
   <Step title="Inițiezi apelurile">
-    Apeși **Inițiază apeluri** — fiecare rând devine un apel în coadă.
+    Apeși **Inițiază apeluri** - fiecare rând devine un apel în coadă.
   </Step>
 </Steps>
 
@@ -45,7 +45,7 @@ Prima linie trebuie să conțină **antetele coloanelor**. Coloanele obligatorii
 | `tpldata-*` | Nu | Variabile de șablon (ex: `tpldata-suma`, `tpldata-scadenta`), transformate automat pentru voce. |
 
 <Note>
-  Coloana **`numar_apelant` nu mai este obligatorie** — dacă lipsește, se folosește auto-select din
+  Coloana **`numar_apelant` nu mai este obligatorie** - dacă lipsește, se folosește auto-select din
   numerele permise agentului.
 </Note>
 
@@ -74,10 +74,10 @@ Doar când fișierul e **Verificat** (badge verde), butonul de inițiere se acti
 
 <CardGroup cols={2}>
   <Card title="Prioritate" icon="flag">
-    1–9, unde **1 = cea mai mare** prioritate. Implicit 5.
+    1-9, unde **1 = cea mai mare** prioritate. Implicit 5.
   </Card>
   <Card title="Max reîncercări" icon="rotate-cw">
-    0–3 (implicit 3). De câte ori se reîncearcă un apel eșuat.
+    0-3 (implicit 3). De câte ori se reîncearcă un apel eșuat.
   </Card>
   <Card title="Interval retry" icon="timer">
     1 min, 5 min, 30 min, 1 oră, 2/3/6 ore (implicit 1 oră).
