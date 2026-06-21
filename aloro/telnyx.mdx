@@ -1,0 +1,44 @@
+---
+title: "Telnyx"
+description: "Furnizorul de telefonie: cheie API, conexiune SIP și import automat al numerelor."
+icon: "plug"
+---
+
+<Info>
+  **Telnyx** este furnizorul de telefonie folosit pentru numere. Pe pagina
+  [Numere Telefon](/aloro/numere-telefon) configurezi credentialele și conexiunea fiecărui număr.
+</Info>
+
+## Cheia API Telnyx
+
+<Card title="Telnyx API key" icon="key">
+  Cheia contului Telnyx pentru un număr. O poți seta **per număr** sau folosi cheia implicită a
+  **Py Agent**-ului. Este criptată; la editare apare **mascată** - o înlocuiești doar dacă lipești una
+  nouă, altfel o lași goală ca să o păstrezi. Există și **Telnyx API URL** (implicit `https://api.telnyx.com/v2`).
+</Card>
+
+## Conexiunea SIP
+
+<Card title="Telnyx SIP" icon="network">
+  Coloana **Telnyx SIP** (admin) arată dacă numărul este **conectat** sau **neasociat** la o conexiune
+  SIP. De aici afli **starea tehnică** a numărului și poți schimba conexiunea dacă e nevoie.
+</Card>
+
+<Tip>
+  Dacă un număr nu funcționează, verifică întâi statusul din coloana **Telnyx SIP** - „neasociat" sau o
+  eroare îți arată unde e problema.
+</Tip>
+
+## Import din Telnyx
+
+<Steps>
+  <Step title="Pornești importul">
+    Apeși **Import din Telnyx** (admin/dev) și alegi cheia API sursă.
+  </Step>
+  <Step title="Încarci lista">
+    Vezi numerele din contul Telnyx, cu statusul fiecăruia (există deja sau nu în platformă).
+  </Step>
+  <Step title="Imporți">
+    Selectezi numerele dorite și le imporți; opțional le asignezi unui Py Agent.
+  </Step>
+</Steps>

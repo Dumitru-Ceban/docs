@@ -38,16 +38,62 @@
         }
       ]
     },
-    "pages": [
-      "aloro/dashboard",
-      "aloro/apeluri",
-      "aloro/agenti",
-      "aloro/clienti",
-      "aloro/campanii",
-      "aloro/numere-telefon",
-      "aloro/extragere-date",
-      "aloro/api-webhooks",
-      "aloro/catalog-produse"
+    "groups": [
+      {
+        "group": "Start",
+        "icon": "rocket",
+        "expanded": true,
+        "pages": [
+          "aloro/bun-venit",
+          "aloro/quickstart",
+          "aloro/concepte"
+        ]
+      },
+      {
+        "group": "Platformă",
+        "icon": "layout-dashboard",
+        "expanded": true,
+        "pages": [
+          "aloro/dashboard",
+          "aloro/clienti",
+          "aloro/apeluri",
+          "aloro/campanii"
+        ]
+      },
+      {
+        "group": "Agenți AI",
+        "icon": "bot",
+        "expanded": true,
+        "pages": [
+          "aloro/agenti",
+          "aloro/prompturi",
+          "aloro/snippets",
+          "aloro/tools",
+          "aloro/extragere-date",
+          "aloro/catalog-produse"
+        ]
+      },
+      {
+        "group": "Telefonie",
+        "icon": "phone",
+        "expanded": true,
+        "pages": [
+          "aloro/numere-telefon",
+          "aloro/inbound-outbound",
+          "aloro/telnyx",
+          "aloro/livekit-trunks"
+        ]
+      },
+      {
+        "group": "Integrări",
+        "icon": "plug",
+        "expanded": true,
+        "pages": [
+          "aloro/api-webhooks",
+          "aloro/api-keys",
+          "aloro/webhook-logs"
+        ]
+      }
     ]
   },
   "navbar": {

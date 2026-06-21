@@ -1,0 +1,51 @@
+---
+title: "Inbound / Outbound"
+description: "Cum atribui agenții care răspund la apeluri (inbound) și cei care apelează (outbound) pe fiecare număr."
+icon: "arrow-right-left"
+---
+
+<Info>
+  Fiecare număr de telefon are doi agenți posibili: unul pentru **inbound** (răspunde la apelurile
+  primite) și unul pentru **outbound** (apelează de pe acel număr). Le setezi în secțiunea
+  [Numere Telefon](/aloro/numere-telefon).
+</Info>
+
+## Inbound - cine răspunde
+
+<Card title="Agent inbound" icon="phone-incoming">
+  Agentul setat ca **inbound** pe un număr preia apelurile **primite** pe acel număr. Dacă vrei ca
+  numărul să primească apeluri, asignează-i un agent inbound.
+</Card>
+
+## Outbound - cine apelează
+
+<Card title="Agent outbound" icon="phone-outgoing">
+  Agentul setat ca **outbound** efectuează apelurile **de pe** acel număr. La pornirea unui apel,
+  numerele disponibile sunt limitate la **allowlist-ul outbound** al agentului - adică numerele de pe
+  care i se permite să sune.
+</Card>
+
+<Note>
+  De aceea, când pui un apel în coadă din profilul unui client, după ce alegi agentul se încarcă
+  automat doar numerele sursă permise acelui agent.
+</Note>
+
+## Cum le setezi
+
+<Steps>
+  <Step title="Deschizi numărul">
+    În **Numere Telefon**, din tabel sau din formularul numărului.
+  </Step>
+  <Step title="Alegi agenții">
+    Setezi **Agent inbound** și/sau **Agent outbound**. Listele sunt filtrate pe direcție (un agent
+    doar-outbound nu apare la inbound și invers).
+  </Step>
+  <Step title="Salvezi">
+    Poți schimba agenții și direct din tabel (editare inline), iar selecția se salvează instant.
+  </Step>
+</Steps>
+
+<Tip>
+  Un număr poate avea ambele direcții (`inbound,outbound`) sau doar una - vezi câmpul **Capabilități**
+  în formularul numărului.
+</Tip>

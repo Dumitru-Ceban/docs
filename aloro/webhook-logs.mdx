@@ -1,0 +1,41 @@
+---
+title: "Webhook Logs"
+description: "Istoricul livrărilor de webhook: ce s-a trimis, statusul și cum depanezi o livrare eșuată."
+icon: "list"
+---
+
+<Info>
+  **Webhook Logs** îți arată fiecare notificare trimisă de platformă către adresele tale de webhook -
+  util ca să verifici că integrarea funcționează. Vezi și [API & Webhooks](/aloro/api-webhooks).
+</Info>
+
+## Ce se înregistrează
+
+Fiecare livrare are:
+
+| Câmp | Ce arată |
+| --- | --- |
+| **Eveniment** | Tipul (ex: `transcript_ready`, `unanswered_call`). |
+| **URL** | Adresa către care s-a trimis. |
+| **Status (cod HTTP)** | Răspunsul serverului tău (2xx = ok, 4xx/5xx = problemă). |
+| **Încercări** | De câte ori s-a încercat livrarea. |
+| **Payload** | Conținutul trimis. |
+| **Moment** | Când s-a făcut livrarea. |
+
+## Depanare
+
+<Steps>
+  <Step title="Deschizi livrarea">
+    Apeși pe o livrare ca să-i vezi detaliile (cerere și răspuns).
+  </Step>
+  <Step title="Verifici codul HTTP">
+    Un cod de eroare arată că serverul tău a respins notificarea sau nu era disponibil.
+  </Step>
+  <Step title="Corectezi și retrimiți">
+    Repari la tine (endpoint, validare semnătură) și retrimiți livrarea.
+  </Step>
+</Steps>
+
+<Tip>
+  Pentru a primi și valida corect notificările, folosește codul-exemplu din tabul **Webhook Receiver**.
+</Tip>

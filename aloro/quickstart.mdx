@@ -1,0 +1,49 @@
+---
+title: "Quickstart / Primul agent"
+description: "De la zero la un agent vocal funcțional, gata de un apel de test."
+icon: "rocket"
+---
+
+<Info>
+  Acest ghid te duce rapid de la zero la un **agent care sună și răspunde coerent**. Rafinarea (prompt,
+  voce, tools) vine după, prin iterare.
+</Info>
+
+## Pașii rapizi
+
+<Steps>
+  <Step title="Creează agentul">
+    În **Agenți** apeși **New agent**, îi dai un nume clar și alegi direcția: *outbound* (sună) sau
+    *inbound* (răspunde). Detalii: [Agenți](/aloro/agenti).
+  </Step>
+  <Step title="Alege creierul și vocea">
+    În tabul **Setări** setezi **modelul LLM** și **furnizorul TTS** + vocea. Pentru română, un punct
+    de plecare bun: `eleven_flash_v2_5`, limba `ro`.
+  </Step>
+  <Step title="Scrie primul prompt">
+    În tabul **Prompturi** definești identitatea, scopul apelului, limitele și regulile. Marchezi
+    promptul ca **activ**. Detalii: [Prompturi](/aloro/prompturi).
+  </Step>
+  <Step title="Atribuie un număr">
+    În **Numere Telefon** setezi agentul ca **inbound** și/sau **outbound** pe un număr. Detalii:
+    [Numere Telefon](/aloro/numere-telefon).
+  </Step>
+  <Step title="Pornește un apel de test">
+    Din profilul unui client apeși **Apel nou**, alegi agentul și numărul, apoi pui apelul în coadă.
+    Detalii: [Clienți (CRM)](/aloro/clienti).
+  </Step>
+  <Step title="Ascultă și ajustează">
+    În **Apeluri** asculți înregistrarea și citești transcriptul, apoi ajustezi promptul. Detalii:
+    [Apeluri](/aloro/apeluri).
+  </Step>
+</Steps>
+
+<Check>
+  Ai un agent funcțional. Următorul pas natural: adaugi **snippets** reutilizabile, **tools** (ex:
+  transfer la operator uman) și **reguli de extragere** pentru a scoate date din apeluri.
+</Check>
+
+<Tip>
+  Nu căuta perfecțiunea din prima. Cei mai buni agenți se obțin prin **iterare**: rulezi apeluri,
+  citești transcripturile, ajustezi.
+</Tip>

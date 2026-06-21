@@ -1,0 +1,48 @@
+---
+title: "Tools"
+description: "Acțiuni pe care agentul le poate declanșa în timpul apelului, ex: transfer la operator uman."
+icon: "wrench"
+---
+
+<Info>
+  Tool-urile sunt **acțiuni** pe care agentul le poate declanșa în timpul apelului. Le gestionezi din
+  tabul **Tools** al agentului, unde alegi ce tool-uri are activate.
+</Info>
+
+## Exemplu clasic: transfer la operator uman
+
+Dacă clientul cere să fie redirecționat sau să vorbească cu un om, creezi/activezi un tool de
+**transfer** care mută apelul de la agentul AI către un agent uman.
+
+<Warning>
+  Fiecare tool are nevoie de **propriul prompt** - o descriere comportamentală care îi spune agentului
+  *ce face* tool-ul și **când** trebuie declanșat.
+</Warning>
+
+## Ce configurezi pentru un tool
+
+<CardGroup cols={2}>
+  <Card title="Prompt comportamental" icon="message-square">
+    Scopul tool-ului și condiția de declanșare (ex: „când clientul cere un operator uman").
+  </Card>
+  <Card title="Parametri specifici" icon="settings">
+    În funcție de tool: ex. pentru transfer - **numărul de telefon** destinație și **programul de lucru**.
+  </Card>
+</CardGroup>
+
+<Steps>
+  <Step title="Activezi tool-ul">
+    În tabul Tools bifezi tool-urile dorite pentru acest agent.
+  </Step>
+  <Step title="Completezi promptul și parametrii">
+    Descrii când se declanșează și completezi datele necesare (număr, program etc.).
+  </Step>
+  <Step title="Salvezi">
+    Tool-ul devine disponibil agentului în apeluri. Unele setări (ex: program) pot fi aplicate la toți agenții.
+  </Step>
+</Steps>
+
+<Tip>
+  Promptul tool-ului contează la fel de mult ca promptul agentului: dacă declanșarea nu e descrisă
+  clar, agentul fie nu folosește tool-ul, fie îl folosește greșit. Testează pe apeluri reale.
+</Tip>

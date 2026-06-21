@@ -1,0 +1,47 @@
+---
+title: "Snippets"
+description: "Module de prompt reutilizabile, inserate rapid cu {{slug}} în orice agent."
+icon: "puzzle"
+---
+
+<Info>
+  Snippeturile sunt, de fapt, **prompturi separate** - module reutilizabile. Le creezi o dată pentru
+  un scop și le poți insera rapid în promptul oricărui agent, ca să nu construiești prompturi uriașe
+  și greu de întreținut.
+</Info>
+
+## De ce snippets
+
+<CardGroup cols={2}>
+  <Card title="Reutilizare" icon="recycle">
+    Definești o regulă o singură dată și o folosești în toți agenții.
+  </Card>
+  <Card title="Întreținere ușoară" icon="wrench">
+    O modifici într-un singur loc și se actualizează peste tot unde e folosită.
+  </Card>
+</CardGroup>
+
+## Cum le folosești
+
+Inserarea se face cu sintaxa `{{slug}}`:
+
+```text Exemplu de inserare în prompt
+Vorbește natural și empatic.
+{{qa_promisiune_de_plata}}
+Închide apelul politicos atunci când discuția s-a încheiat.
+```
+
+<Steps>
+  <Step title="Creezi snippetul">
+    Într-o secțiune dedicată snippeturilor, definești conținutul și slug-ul.
+  </Step>
+  <Step title="Îl inserezi în prompt">
+    Din pickerul de sub textarea de prompt cauți snippetul și îl inserezi (drag & drop sau click);
+    în prompt apare `{{slug}}`.
+  </Step>
+</Steps>
+
+<Tip>
+  Exemple uzuale de snippeturi: vorbire naturală, gestionarea mesajelor incomplete, salvarea
+  promisiunilor de plată, folosirea contextului dinamic, închiderea apelului.
+</Tip>

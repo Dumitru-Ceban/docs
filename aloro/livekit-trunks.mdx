@@ -1,0 +1,33 @@
+---
+title: "LiveKit Trunks"
+description: "Ce server/trunk gestionează apelurile inbound și outbound pentru fiecare număr."
+icon: "server"
+---
+
+<Info>
+  **LiveKit trunks** sunt conexiunile prin care un număr **primește** și **plasează** apeluri la nivel
+  de server. Se gestionează din [Numere Telefon](/aloro/numere-telefon) (vizibil pentru admin).
+</Info>
+
+## Ce sunt trunk-urile
+
+<Card title="Trunk inbound / outbound" icon="server">
+  Pentru fiecare număr poți vedea și asigna **trunk-ul inbound** (serverul care primește apelurile) și
+  **trunk-ul outbound** (serverul care plasează apelurile). Trunk-urile sunt grupate pe server.
+</Card>
+
+Coloana **Livekit trunks** din tabel arată starea: ex. `inbound` (verde), `outbound` (roșu) sau erori
+de conexiune. Apeși pe ea ca să gestionezi atribuirile.
+
+## Carrier pools (limitarea apelurilor concurente)
+
+<Card title="Carrier pool" icon="gauge">
+  Un **carrier pool** limitează câte apeluri concurente pot folosi un număr, ca să nu depășești limitele
+  furnizorului. Îl alegi în formularul numărului (fiecare pool are un plafon de apeluri concurente).
+  Când plafonul e atins, dispecerizarea de pe acel număr este amânată.
+</Card>
+
+<Note>
+  Aceste setări sunt în general pentru rolurile de administrare/tehnice. Pentru utilizarea curentă e
+  suficient să ai agentul inbound/outbound corect setat - vezi [Inbound / Outbound](/aloro/inbound-outbound).
+</Note>

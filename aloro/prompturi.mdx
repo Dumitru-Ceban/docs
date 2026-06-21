@@ -1,0 +1,60 @@
+---
+title: "Prompturi"
+description: "Promptul definește comportamentul agentului. Cum îl construiești pe straturi și cum îl activezi."
+icon: "wand-sparkles"
+---
+
+<Info>
+  Promptul este **inima agentului** - el definește în cea mai mare parte comportamentul și acțiunile
+  acestuia. Se găsește în tabul **Prompturi** al agentului și necesită verificări și iterări continue.
+</Info>
+
+## Mai multe prompturi per agent
+
+Un agent poate avea **mai multe prompturi**, pe care le activezi sau dezactivezi după nevoie (ex: o
+variantă pentru o campanie, alta pentru alta). **Unul singur este activ** per direcție (inbound/outbound).
+
+<Steps>
+  <Step title="New prompt">
+    Apeși **New prompt**, îi dai un **titlu** și scrii textul.
+  </Step>
+  <Step title="Salvezi">
+    Promptul apare în lista agentului.
+  </Step>
+  <Step title="Îl marchezi activ">
+    Promptul activ este cel care guvernează comportamentul la următorul apel.
+  </Step>
+</Steps>
+
+## Logica promptului - construit pe straturi
+
+Promptul nu se scrie „dintr-o suflare". Se construiește pe straturi, fiecare adăugând context peste cel dinainte:
+
+<Steps>
+  <Step title="Identitate & scop">
+    Cine este agentul și de ce sună. Rolul și obiectivul apelului.
+  </Step>
+  <Step title="Limite clare">
+    Ce **poate** și ce **nu poate** face agentul. Granițele previn comportamente nedorite.
+  </Step>
+  <Step title="Reguli de conversație & stil">
+    Tonul, stilul de vorbire și scenariile principale de răspuns.
+  </Step>
+  <Step title="Snippeturi reutilizabile">
+    Module pentru reguli importante (vorbire naturală, promisiune de plată, închiderea apelului) -
+    vezi [Snippets](/aloro/snippets).
+  </Step>
+  <Step title="Bază de cunoștințe & context client">
+    La final adaugi contextul specific apelului, ca agentul să adapteze discuția păstrând același
+    comportament, ton și proces.
+  </Step>
+</Steps>
+
+<Note>
+  Sub textarea de prompt ai un **picker de snippets** (și de variabile) cu căutare: cauți un snippet
+  și îl inserezi, iar în prompt apare `{{slug}}`.
+</Note>
+
+<Tip>
+  Promptul bun se obține prin iterare: îl testezi pe apeluri reale, citești transcripturile și ajustezi.
+</Tip>

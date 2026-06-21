@@ -1,0 +1,73 @@
+---
+title: "Concepte de bază"
+description: "Termenii cheie ai platformei și cum se leagă între ei."
+icon: "book-open"
+---
+
+<Info>
+  Înțelegerea câtorva concepte de bază te ajută să folosești toate secțiunile mai ușor. Iată
+  vocabularul esențial.
+</Info>
+
+## Agentul și creierul lui
+
+<AccordionGroup>
+  <Accordion title="Agent" icon="bot">
+    Entitatea care efectuează apelul. Are o direcție (inbound/outbound), un prompt activ, setări de
+    voce și reguli.
+  </Accordion>
+  <Accordion title="Prompt" icon="wand-sparkles">
+    Instrucțiunea care definește comportamentul agentului. Construit pe straturi: identitate, limite,
+    reguli, snippets, context.
+  </Accordion>
+  <Accordion title="Snippet" icon="puzzle">
+    Bucată de prompt reutilizabilă, inserată cu `{{slug}}`. O scrii o dată, o folosești în mai mulți agenți.
+  </Accordion>
+  <Accordion title="Tool" icon="wrench">
+    Acțiune pe care agentul o poate declanșa în apel (ex: transfer la operator uman).
+  </Accordion>
+  <Accordion title="Regulă de extragere" icon="database">
+    Logică AI care, după apel, citește transcriptul și salvează o informație structurată (notă).
+  </Accordion>
+</AccordionGroup>
+
+## Cum sună un agent (LLM / TTS / STT)
+
+<CardGroup cols={3}>
+  <Card title="LLM" icon="brain">
+    Modelul care „gândește" răspunsul agentului.
+  </Card>
+  <Card title="TTS" icon="audio-waveform">
+    Text-To-Speech: transformă răspunsul în voce.
+  </Card>
+  <Card title="STT" icon="ear">
+    Speech-To-Text: transcrie ce spune utilizatorul.
+  </Card>
+</CardGroup>
+
+## Ciclul de viață al unui apel
+
+<Steps>
+  <Step title="În coadă">
+    Apelul outbound așteaptă să fie inițiat (sau e pauzat / în afara orelor).
+  </Step>
+  <Step title="Activ">
+    Apelul sună, se conectează și se desfășoară (live).
+  </Step>
+  <Step title="Finalizat">
+    Se încheie cu un motiv (`ended_reason`); apare în istoric, cu transcript și înregistrare.
+  </Step>
+  <Step title="Post-apel">
+    Regulile de extragere rulează pe transcript și salvează note; webhook-urile pot notifica sistemele tale.
+  </Step>
+</Steps>
+
+## Alți termeni utili
+
+| Termen | Înseamnă |
+| --- | --- |
+| **Inbound / Outbound** | Apel primit vs. apel inițiat de agent. |
+| **Campanie (bulk)** | Apeluri în masă pornite dintr-un fișier CSV. |
+| **Catalog** | Bază de produse pe care agentul o caută în timpul apelului. |
+| **Notă** | Informație salvată pe apel (manual sau extrasă de o regulă). |
+| **Telemetrie** | Metrici de performanță AI (latențe, tokeni). |
