@@ -1,0 +1,140 @@
+---
+title: "API & Webhooks"
+description: "Conectează platforma la sistemele tale: chei API pentru a apela platforma și webhook-uri prin care platforma te anunță automat."
+icon: "code"
+---
+
+<Info>
+  **API & Webhooks** (`/api-hub`) este locul de unde conectezi platforma la alte sisteme:
+  - **API** — tu chemi platforma (ex: pornești un apel din software-ul tău).
+  - **Webhooks** — platforma te cheamă pe tine (ex: te anunță când un transcript e gata).
+</Info>
+
+## Cele 6 taburi
+
+<CardGroup cols={3}>
+  <Card title="Docs" icon="book">
+    Documentația API: ce poți face, cum te autentifici, exemple de cod.
+  </Card>
+  <Card title="API Keys" icon="key">
+    Creezi și revoci cheile de acces (cheie + secret).
+  </Card>
+  <Card title="API Tester" icon="vial">
+    Unealtă pentru a testa rapid apelurile API din interfață.
+  </Card>
+  <Card title="Webhooks" icon="plug">
+    Configurezi adresele care primesc notificările automate.
+  </Card>
+  <Card title="Webhook Receiver" icon="inbox">
+    Cod-exemplu pentru a primi și valida webhook-urile la tine.
+  </Card>
+  <Card title="Endpoint Tester" icon="satellite-dish">
+    Testezi conectivitatea către endpoint-uri.
+  </Card>
+</CardGroup>
+
+<Note>
+  Comutarea între taburi se face prin `?tab=docs|keys|tester|webhooks|receiver|endpoints`.
+</Note>
+
+---
+
+## API Keys — accesul tău la platformă
+
+O **cheie API** îți permite să apelezi platforma din propriul tău software, în siguranță.
+
+<Steps>
+  <Step title="Creezi o cheie">
+    În tabul **API Keys** apeși pe butonul de creare. Primești o pereche **cheie + secret**.
+  </Step>
+  <Step title="O salvezi în siguranță">
+    Copiază valoarea acum și păstrează-o într-un loc sigur — secretul nu se mai afișează integral ulterior.
+  </Step>
+  <Step title="O folosești la autentificare">
+    Trimiți cheia în antetul fiecărei cereri API (vezi tabul **Docs**).
+  </Step>
+</Steps>
+
+<Warning>
+  Tratează cheia ca pe o parolă. Dacă a fost expusă, **revoc-o** din același tab și creează una nouă.
+  Cheile sunt valabile la nivel de proiect.
+</Warning>
+
+---
+
+## Docs — ce poți face cu API-ul
+
+Tabul **Docs** conține documentația completă, cu exemple (cURL / cod) și metoda de autentificare.
+La nivel înalt, API-ul îți permite, printre altele:
+
+<CardGroup cols={2}>
+  <Card title="Pornește apeluri" icon="phone-outgoing">
+    Pui un apel în coadă către un client.
+  </Card>
+  <Card title="Vezi coada și statusul" icon="list">
+    Verifici apelurile în coadă și starea unui apel.
+  </Card>
+  <Card title="Anulezi apeluri" icon="ban">
+    Oprești un apel din coadă.
+  </Card>
+  <Card title="Citești date" icon="database">
+    Iei istoricul apelurilor, transcripturile, notele și metrici (ex: minute de telefonie).
+  </Card>
+</CardGroup>
+
+<Tip>
+  Începe din **Docs** ca să vezi adresa de bază (base URL), antetul de autentificare și exemplele —
+  apoi le poți încerca direct în **API Tester**.
+</Tip>
+
+---
+
+## API Tester — încearcă fără să scrii cod
+
+Tabul **API Tester** îți oferă o unealtă în care **alegi un endpoint**, completezi parametrii,
+**trimiți** cererea și vezi **răspunsul** pe loc. Ideal pentru a testa rapid înainte de a integra
+în software-ul tău. (Există și **Endpoint Tester** pentru verificarea conectivității.)
+
+---
+
+## Webhooks — platforma te anunță automat
+
+Un **webhook** este o adresă (URL) de la tine pe care platforma o apelează automat când se întâmplă
+un eveniment — așa nu trebuie să interoghezi tu mereu platforma.
+
+<Steps>
+  <Step title="Adaugi un webhook">
+    În tabul **Webhooks** dai un **nume**, **URL-ul** tău și o **cheie de semnătură** (pentru a verifica
+    că notificarea vine chiar de la platformă).
+  </Step>
+  <Step title="Alegi evenimentele">
+    Selectezi ce evenimente îl declanșează:
+
+    | Eveniment | Când se declanșează |
+    | --- | --- |
+    | `transcript_ready` | Când transcriptul unui apel este gata. |
+    | `unanswered_call` | Când un apel se încheie fără răspuns. |
+  </Step>
+  <Step title="Îl activezi">
+    Comuți webhook-ul pe **activ**. Îl poți edita, dezactiva sau șterge oricând, și îl poți **testa**
+    direct din interfață pentru a vedea rezultatul.
+  </Step>
+</Steps>
+
+<Note>
+  Tabul **Webhook Receiver** îți oferă **cod-exemplu** (PHP) pentru a primi notificările și a
+  **valida semnătura** — îl copiezi și îl adaptezi la sistemul tău.
+</Note>
+
+---
+
+## Webhook Logs — ce a fost trimis
+
+Fiecare livrare de webhook este înregistrată: **evenimentul**, **URL-ul**, **codul HTTP** de răspuns,
+numărul de **încercări**, **payload-ul** și momentul. Poți deschide o livrare pentru a-i vedea
+detaliile (cerere și răspuns) și a depana o livrare eșuată.
+
+<Tip>
+  Dacă o notificare nu a ajuns, verifică în loguri codul de răspuns: un cod de eroare arată că
+  serverul tău a respins-o sau nu era disponibil. Corectează la tine și retrimite.
+</Tip>

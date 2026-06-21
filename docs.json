@@ -45,7 +45,8 @@
       "aloro/clienti",
       "aloro/campanii",
       "aloro/numere-telefon",
-      "aloro/extragere-date"
+      "aloro/extragere-date",
+      "aloro/api-webhooks"
     ]
   },
   "logo": {
